@@ -1,9 +1,10 @@
-_export () { export $1=$2; }
+export MYBORG_CONFIG_MODULES=~/.config/myborg/modules
 
-# my modules
-_export MYBORG_CONFIG_MODULES ${HOME}/.local/var/bch/myborg/modules
-_export src https://github.com/bryanhann/borg.modules.bch
-_export dst ${MYBORG_CONFIG_MODULES}/500.borg.module.bch
-mkdir -p    ${MYBORG_CONFIG_MODULES}
-[ -d $dst ] || git clone ${src} ${dst}
+_clone () {
+    src=$1
+    dst=$2
+    [ -d $dst ] || git clone $src $dst
+}
+
+_clone https://github.com/bryanhann/borg.modules.bch ${MYBORG_CONFIG_MODULES}/0.bch
 
