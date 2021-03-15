@@ -6,5 +6,5 @@ _clone () {
     [ -d $dst ] || git clone $src $dst
 }
 
-_clone https://github.com/bryanhann/borg.modules.bch ${MYBORG_CONFIG_MODULES}/0.bch
+_clone https://github.com/bryanhann/borg.modules.bch ${MYBORG_CONFIG_MODULES}/500.bch
 
