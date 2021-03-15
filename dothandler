@@ -1,0 +1,8 @@
+main () {
+    echo "[$PWD].main() [$*]" 999 [$3]
+    source borg:clone:source:tree https://github.com/bryanhann/borg.mod.bch100 $PWD/mods/bch100
+    source borg:clone:source:tree https://github.com/bryanhann/borg.mod.bch950 $PWD/mods/bch950
+    source ${PWD}/dotfiles/dot$1
+}
+
+borg-assert-insitu ${HOME}/.config/myborg/activate && main $*
