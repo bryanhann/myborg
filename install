@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+[ ! "$0" == "./install" ] && {
+    echo "try './install'"
+    exit
+}
+
+source ${PWD}/source/index
+echo "was: [${MYBORG}]"
+echo ${PWD} > ${MYBORG_INDEX}
+source ${PWD}/source/index
+echo "now: [${MYBORG}]"

@@ -1,0 +1,24 @@
+#!/bin/bash
+#This shebang is for synax only. Do not make executable!
+
+__log__ () {
+    echo $* >> ~/.myborg.log
+    [ -f ~/.myborg.flag.verbose ] && echo $*
+}
+
+__source__ () {
+    __log__ ++ source [${1}]
+        [ ! -d ${1} ] && source ${1}
+        [   -d ${1} ] && __sourcedir__ ${1}
+    __log__ -- source [${1}]
+}
+
+__sourcedir__ () {
+    for name in $(/bin/ls ${1} | grep ^[0-9] | sort); do __source__ ${1}/${name}; done
+}
+
+__source__ $(cat ~/.local/var/myborg/current.txt)/src
+__source__ borg:__first__
+__source__ ${MYBORG_DOTFILE_DIR}/dot$1
+__source__ borg:__last__
+__source__ borg:path:clean

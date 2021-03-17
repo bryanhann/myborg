@@ -1,0 +1,4 @@
+export MYBORG_INDEX=~/.local/var/myborg/current.txt
+export MYBORG_HOME=$(cat ${MYBORG_INDEX})
+export MYBORG=${MYBORG_HOME}
+

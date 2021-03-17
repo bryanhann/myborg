@@ -1,0 +1,16 @@
+#!/bin/bash
+#This shebang is for synax only. Do not make executable!
+
+myborg_load_mymods () {
+    myborg_load_mods ${MYBORG_MODSPEC_DIR}
+}
+
+myborg_load_mods () {
+    for name in $(/bin/ls $1 | grep ^[0-9] | sort ); do
+        path=${1}/${name}
+        src=$(${path})
+        dst=${MYBORG_MODS}/$name
+        [ -d ${dst} ] || git clone ${src} ${dst}
+        source borg:source:tree ${dst}
+    done
+}
