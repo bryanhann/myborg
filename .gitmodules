@@ -1,0 +1,4 @@
+[submodule "submodules/borg"]
+	path = submodules/borg
+	url = https://github.com/bryanhann/dot.borg
+	branch = slim
