@@ -5,8 +5,8 @@
     exit
 }
 
-source ${PWD}/source/index
+source ${PWD}/dot
 echo "was: [${MYBORG}]"
 echo ${PWD} > ${MYBORG_INDEX}
-source ${PWD}/source/index
+source ${PWD}/dot
 echo "now: [${MYBORG}]"

@@ -2,3 +2,9 @@
 	path = submodules/borg
 	url = https://github.com/bryanhann/dot.borg
 	branch = slim
+[submodule "submodules/500-borg.mod.bch100"]
+	path = submodules/500-borg.mod.bch100
+	url = https://github.com/bryanhann/borg.mod.bch100
+[submodule "submodules/900--bch-prefs--borg.mod.bch950"]
+	path = submodules/900--bch-prefs--borg.mod.bch950
+	url = https://github.com/bryanhann/borg.mod.bch950

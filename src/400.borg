@@ -1,8 +1,0 @@
-#!/bin/bash
-#This shebang is for synax only. Do not make executable!
-
-
-[ -d $BORG ] || git clone -b slim https://github.com/bryanhann/dot.borg $BORG
-
-export PATH=${PATH}:${BORG}/bin
-source borg:path:clean
