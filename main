@@ -7,7 +7,13 @@ myborg_export () {
     export $key="$*";
 }
 
-myborg_clone () {
+myborg_export MYBORG_INDEX        ~/.local/var/myborg/current.txt
+myborg_export MYBORG              $(cat ${MYBORG_INDEX})
+myborg_export MYBORG_MODS         ${MYBORG}/.mods
+myborg_export BORG                ${MYBORG_MODS}/borg
+myborg_export MYBORG_DOTFILES     ${MYBORG}/dots
+
+myborg_clone () { 
     local D=${MYBORG_MODS}/${1}
     [ ! -d ${D} ] && shift && git clone $* ${D}
 }
@@ -17,7 +23,7 @@ myborg_log () {
     [ -f ~/.myborg.flag.verbose ] && echo $*
 }
 
-myborg_source () {
+myborg_source () { 
     myborg_log ++ source [${1}]
         [ ! -d ${1} ] && source ${1}
         [   -d ${1} ] && {
@@ -42,35 +48,12 @@ myborg_main () {
     myborg_source borg:path:clean
 }
 
-myborg_install () {
-     new=${1}
-     echo installing
-     echo "was: $(cat ${MYBORG_INDEX})"
-     echo ${new} >   ${MYBORG_INDEX}
-     echo "now: $(cat ${MYBORG_INDEX})"
-     source ${new}/index
-}
+
 
 myborg_clone_all () {
     source ${MYBORG}/index
 }
 
-myborg_export MYBORG_INDEX        ~/.local/var/myborg/current.txt
-myborg_export MYBORG              $(cat ${MYBORG_INDEX})
-myborg_export MYBORG_MODS         ${MYBORG}/.mods
-myborg_export BORG                ${MYBORG_MODS}/borg
-myborg_export MYBORG_DOTFILES     ${MYBORG}/dots
 
-case .$1 in
-  .--install)
-       myborg_install $2
-       myborg_clone_all
-       ;;
-  .)
-     echo NOTHING
-     ;;
- *)
-     myborg_main $*
-     ;;
-esac
+[ ! "$1" = "" ] && myborg_main $*
 

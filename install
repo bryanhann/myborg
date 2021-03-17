@@ -1,7 +1,11 @@
 #/usr/bin/env bash
 
-[ "$0" == "./install" ] && source ${PWD}/main --install ${PWD}
-[ "$0" == "./install" ] && exit
+[ "$0" == "./install" ] || echo "try './install'"
+[ "$0" == "./install" ] || exit
 
-echo "try './install'"
-
+export MYBORG_INDEX=~/.local/var/myborg/current.txt
+echo "was: $(cat ${MYBORG_INDEX})"
+echo ${PWD} >   ${MYBORG_INDEX}
+echo "now: $(cat ${MYBORG_INDEX})"
+source ${PWD}/main 
+myborg_clone_all
