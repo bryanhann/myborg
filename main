@@ -34,13 +34,12 @@ myborg_source_all () {
 }
 
 myborg_main () {
-    source ${MYBORG}/index
+    myborg_clone_all
     myborg_export PATH ${PATH}:${BORG}/bin
     myborg_source borg:__first__
     myborg_source ${MYBORG_DOTFILES}/dot$1
     myborg_source borg:__last__
-    source borg:path:clean
-    echo --MAIN
+    myborg_source borg:path:clean
 }
 
 myborg_install () {
@@ -52,6 +51,10 @@ myborg_install () {
      source ${new}/index
 }
 
+myborg_clone_all () {
+    source ${MYBORG}/index
+}
+
 myborg_export MYBORG_INDEX        ~/.local/var/myborg/current.txt
 myborg_export MYBORG              $(cat ${MYBORG_INDEX})
 myborg_export MYBORG_MODS         ${MYBORG}/.mods
@@ -61,12 +64,12 @@ myborg_export MYBORG_DOTFILES     ${MYBORG}/dots
 case .$1 in
   .--install)
        myborg_install $2
+       myborg_clone_all
        ;;
   .)
      echo NOTHING
      ;;
  *)
-     echo SOMETHING
      myborg_main $*
      ;;
 esac
