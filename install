@@ -1,14 +1,7 @@
-#!/usr/bin/env bash
+#/usr/bin/env bash
 
-[ ! "$0" == "./install" ] && {
-    echo "try './install'"
-    exit
-}
+[ "$0" == "./install" ] && source ${PWD}/main --install ${PWD}
+[ "$0" == "./install" ] && exit
 
-source ${PWD}/main; echo "was: [${MYBORG}]"
+echo "try './install'"
 
-echo ${PWD} > ${MYBORG_INDEX}
-
-source ${PWD}/main; echo "now: [${MYBORG}]"
-
-source ${PWD}/index

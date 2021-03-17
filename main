@@ -1,14 +1,11 @@
 #!/bin/bash
 #This shebang is for synax only. Do not make executable!
 
-myborg_export () { key=$1; shift; export $key="$*"; }
-
-myborg_export MYBORG_INDEX        ~/.local/var/myborg/current.txt
-myborg_export MYBORG              $(cat ${MYBORG_INDEX})
-myborg_export MYBORG_MODS         ${MYBORG}/.mods
-myborg_export BORG                ${MYBORG_MODS}/borg
-#myborg_export MYBORG_SUBMODULES   ${MYBORG}/submodules
-myborg_export MYBORG_DOTFILES     ${MYBORG}/dots
+myborg_export () {
+    key=$1;
+    shift;
+    export $key="$*";
+}
 
 myborg_clone () {
     local D=${MYBORG_MODS}/${1}
@@ -34,17 +31,43 @@ myborg_source () {
 myborg_source_all () {
     myborg_log SOURCING ALL
     myborg_source ${MYBORG_MODS}
-    #myborg_source ${MYBORG_SUBMODULES}
 }
 
-
-
-
-[ ! "$1" == "" ] && {
+myborg_main () {
     source ${MYBORG}/index
     myborg_export PATH ${PATH}:${BORG}/bin
     myborg_source borg:__first__
     myborg_source ${MYBORG_DOTFILES}/dot$1
     myborg_source borg:__last__
     source borg:path:clean
+    echo --MAIN
 }
+
+myborg_install () {
+     new=${1}
+     echo installing
+     echo "was: $(cat ${MYBORG_INDEX})"
+     echo ${new} >   ${MYBORG_INDEX}
+     echo "now: $(cat ${MYBORG_INDEX})"
+     source ${new}/index
+}
+
+myborg_export MYBORG_INDEX        ~/.local/var/myborg/current.txt
+myborg_export MYBORG              $(cat ${MYBORG_INDEX})
+myborg_export MYBORG_MODS         ${MYBORG}/.mods
+myborg_export BORG                ${MYBORG_MODS}/borg
+myborg_export MYBORG_DOTFILES     ${MYBORG}/dots
+
+case .$1 in
+  .--install)
+       myborg_install $2
+       ;;
+  .)
+     echo NOTHING
+     ;;
+ *)
+     echo SOMETHING
+     myborg_main $*
+     ;;
+esac
+
