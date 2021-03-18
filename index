@@ -1,4 +1,4 @@
-myborg_clone    borg            -b slim https://github.com/bryanhann/dot.borg
-myborg_clone    500.bch.basic   https://github.com/bryanhann/borg.mod.bch100
-myborg_clone    900.bch.prefs   https://github.com/bryanhann/borg.mod.bch950
+myborg_clone    borg      -b slim https://github.com/bryanhann/dot.borg
+myborg_clone    100.bch   https://github.com/bryanhann/myborg.bch.100
+myborg_clone    900.bch   https://github.com/bryanhann/myborg.bch.900
 
