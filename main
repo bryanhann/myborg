@@ -1,59 +1,27 @@
 #!/bin/bash
 #This shebang is for synax only. Do not make executable!
 
-myborg_export () {
-    key=$1;
-    shift;
-    export $key="$*";
-}
+_export () { export $1=$2; }
 
-myborg_export MYBORG_INDEX        ~/.local/var/myborg/current.txt
-myborg_export MYBORG              $(cat ${MYBORG_INDEX})
-myborg_export MYBORG_MODS         ${MYBORG}/.mods
-myborg_export BORG                ${MYBORG_MODS}/borg
-myborg_export MYBORG_DOTFILES     ${MYBORG}/dots
+_export MYBORG          $(cat ~/.local/var/myborg/current.txt)
+_export MYBORG_BIN      ${HOME}/.local/var/myborg/mybin
+_export MYBORG_MODS     ${MYBORG}/.mods
+_export MYBORG_DOTS     ${MYBORG}/dots
 
-myborg_clone () { 
-    local D=${MYBORG_MODS}/${1}
-    [ ! -d ${D} ] && shift && git clone $* ${D}
-}
+DST=${MYBORG}/.borg
+SRC="-b slim https://github.com/bryanhann/dot.borg"
+[ -d ${DST} ] || git clone ${SRC} ${DST}
+pushd ${DST} > /dev/null
+source ./insitu
+popd > /dev/null
 
-myborg_log () {
-    echo $* >> ~/.myborg.log
-    [ -f ~/.myborg.flag.verbose ] && echo $*
-}
-
-myborg_source () { 
-    myborg_log ++ source [${1}]
-        [ ! -d ${1} ] && source ${1}
-        [   -d ${1} ] && {
-            for name in $(/bin/ls ${1} | grep ^[0-9] | sort); do 
-              myborg_source ${1}/${name}; 
-            done
-        }
-    myborg_log -- source [${1}]
-}
-
-myborg_source_all () {
-    myborg_log SOURCING ALL
-    myborg_source ${MYBORG_MODS}
-}
+myborg_clone_all
 
 myborg_main () {
-    myborg_clone_all
-    myborg_export PATH ${PATH}:${BORG}/bin
-    myborg_source borg:__first__
-    myborg_source ${MYBORG_DOTFILES}/dot$1
-    myborg_source borg:__last__
-    myborg_source borg:path:clean
+    source borg:__first__
+    myborg source ${MYBORG_DOTS}/dot$1
+    source borg:__last__
+    source borg:path:clean
 }
 
-
-
-myborg_clone_all () {
-    source ${MYBORG}/index
-}
-
-
-[ ! "$1" = "" ] && myborg_main $*
-
+[ ! "$1" = "" ] && myborg main $*

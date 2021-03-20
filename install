@@ -3,9 +3,9 @@
 [ "$0" == "./install" ] || echo "try './install'"
 [ "$0" == "./install" ] || exit
 
-export MYBORG_INDEX=~/.local/var/myborg/current.txt
-echo "was: $(cat ${MYBORG_INDEX})"
-echo ${PWD} >   ${MYBORG_INDEX}
-echo "now: $(cat ${MYBORG_INDEX})"
+export xx=~/.local/var/myborg/current.txt
+echo was: $(cat $xx)
+echo ${PWD} >   $xx
+echo now: $(cat $xx)
+
 source ${PWD}/main 
-myborg_clone_all
