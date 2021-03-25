@@ -1,5 +1,4 @@
-myborg_clone    100.bch.base    https://github.com/bryanhann/myborg.bch.100
-myborg_clone    310.bch.named   https://github.com/bryanhann/myborg.bch.310.named
-myborg_clone    315.bch.mytags  https://github.com/bryanhann/myborg.bch.315.mytags
-myborg_clone    340.bch-rsync   https://github.com/bryanhann/myborg.bch.340.mybackup
+myborg_clone    090.deprecated  https://github.com/bryanhann/myborg.090.deprecated
+myborg_clone    320.mydts       https://github.com/bryanhann/myborg.320.mydts
+myborg_clone    600.bch-seagate  https://github.com/bryanhann/myborg.600.bch-seagate
 myborg_clone    900.bch         https://github.com/bryanhann/myborg.bch.900
