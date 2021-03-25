@@ -15,6 +15,8 @@ pushd ${DST} > /dev/null
 source ./insitu
 popd > /dev/null
 
+_export PATH            ${PATH}:${HOME}/.local/bin
+
 myborg_clone_all
 
 myborg_main () {
