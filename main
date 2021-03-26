@@ -15,6 +15,11 @@ pushd ${DST} > /dev/null
 source ./insitu
 popd > /dev/null
 
+clone_myborg_mod () { 
+    local D=${MYBORG_MODS}/${1}
+    [ ! -d ${D} ] && shift && git clone $* ${D}
+}
+
 _export PATH            ${PATH}:${HOME}/.local/bin
 
 myborg_clone_all

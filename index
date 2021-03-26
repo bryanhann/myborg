@@ -1,6 +1,6 @@
-myborg_clone    090.deprecated              https://github.com/bryanhann/myborg.090.deprecated
-myborg_clone    320.mydts                   https://github.com/bryanhann/myborg.320.mydts
-myborg_clone    330.myenv                   https://github.com/bryanhann/myborg.330.myenv
-myborg_clone    600.bch-seagate             https://github.com/bryanhann/myborg.600.bch-seagate
-myborg_clone    610.bch-ws852   -b insitu   https://github.com/bryanhann/myborg.610.bch-ws852
-myborg_clone    900.bch                     https://github.com/bryanhann/myborg.bch.900
+clone_myborg_mod    090.deprecated              https://github.com/bryanhann/myborg.090.deprecated
+clone_myborg_mod    320.mydts                   https://github.com/bryanhann/myborg.320.mydts
+clone_myborg_mod    330.myenv                   https://github.com/bryanhann/myborg.330.myenv
+clone_myborg_mod    600.bch-seagate             https://github.com/bryanhann/myborg.600.bch-seagate
+clone_myborg_mod    610.bch-ws852   -b insitu   https://github.com/bryanhann/myborg.610.bch-ws852
+clone_myborg_mod    900.bch                     https://github.com/bryanhann/myborg.bch.900
