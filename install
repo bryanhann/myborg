@@ -3,9 +3,14 @@
 [ "$0" == "./install" ] || echo "try './install'"
 [ "$0" == "./install" ] || exit
 
-export xx=~/.local/var/myborg/current.txt
-echo was: $(cat $xx)
-echo ${PWD} >   $xx
-echo now: $(cat $xx)
+export MYVAR=~/.local/var/myborg
+mkdir -p ${MYVAR}
+
+export xx=${MYVAR}/current.txt
+touch $xx
+
+echo "was: [$(cat ${xx})]"
+echo ${PWD} > ${xx}
+echo "now: [$(cat ${xx})]"
 
 source ${PWD}/main 
