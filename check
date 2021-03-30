@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# list any git dirs that need attention.
+
+for xx in $(find -name .git); do
+    dd=$(dirname $xx)
+    pushd ${dd} > /dev/null
+    [ ! -z "$(git status --short)" ] && echo $PWD
+    popd > /dev/null
+done
