@@ -1,7 +1,8 @@
-clone_myborg_mod    090.deprecated              https://github.com/bryanhann/myborg.090.deprecated
-clone_myborg_mod    320.mydts                   https://github.com/bryanhann/myborg.320.mydts
-clone_myborg_mod    600.bch-seagate             https://github.com/bryanhann/myborg.600.bch-seagate
-clone_myborg_mod    610.bch-ws852   -b insitu   https://github.com/bryanhann/myborg.610.bch-ws852
-clone_myborg_mod    630.bch-poetry              https://github.com/bryanhann/myborg.630.bch-poetry
-clone_myborg_mod    640.bch-monty               https://github.com/bryanhann/myborg.640.bch-monty
-clone_myborg_mod    900.bch                     https://github.com/bryanhann/myborg.bch.900
+clone_myborg_mod 090.deprecated              https://github.com/bryanhann/myborg.090.deprecated
+clone_myborg_mod 320.mydts                   https://github.com/bryanhann/myborg.320.mydts
+clone_myborg_mod 600.bch-seagate             https://github.com/bryanhann/myborg.600.bch-seagate
+clone_myborg_mod 610.bch-ws852   -b insitu   https://github.com/bryanhann/myborg.610.bch-ws852
+clone_myborg_mod 630.bch-poetry              https://github.com/bryanhann/myborg.630.bch-poetry
+clone_myborg_mod 640.bch-monty               https://github.com/bryanhann/myborg.640.bch-monty
+clone_myborg_mod 650.bch-vjot                https://github.com/bryanhann/myborg.650.bch-vjot
+clone_myborg_mod 900.bch                     https://github.com/bryanhann/myborg.bch.900
