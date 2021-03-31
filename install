@@ -4,13 +4,29 @@
 [ "$0" == "./install" ] || exit
 
 export MYVAR=~/.local/var/myborg
-mkdir -p ${MYVAR}
 
+mkdir -p ${MYVAR}
 export xx=${MYVAR}/current.txt
 touch $xx
-
 echo "was: [$(cat ${xx})]"
 echo ${PWD} > ${xx}
 echo "now: [$(cat ${xx})]"
 
+fix () {
+    local orig_dir=${HOME}
+    local copy_dir=${MYVAR}/backups
+    local orig=${orig_dir}/$1
+    local copy=${copy_dir}/$1
+    mkdir -p ${copy_dir}
+    [ ! -f $orig ] && return
+    [ ! -f $copy ] && echo copying $1
+    [ ! -f $copy ] && cp ${orig} ${copy}
+    echo "source \$(cat ~/.local/var/myborg/current.txt)/main $1" > ${orig}
+}
+
+for dotfile in .bashrc .bash_profile; do
+    fix $dotfile
+done
+
 source ${PWD}/main 
+
