@@ -1,8 +1,8 @@
-_myborg clone 010.borg        -b slim     https://github.com/bryanhann/dot.borg
+_myborg clone 010.borg        -b slim     https://github.com/bryanhann/myborg.010.borg
 _myborg clone 320.mydts                   https://github.com/bryanhann/myborg.320.mydts
 _myborg clone 600.bch-seagate             https://github.com/bryanhann/myborg.600.bch-seagate
 _myborg clone 610.bch-ws852   -b insitu   https://github.com/bryanhann/myborg.610.bch-ws852
 _myborg clone 630.bch-poetry              https://github.com/bryanhann/myborg.630.bch-poetry
 _myborg clone 640.bch-monty               https://github.com/bryanhann/myborg.640.bch-monty
 _myborg clone 650.bch-vjot                https://github.com/bryanhann/myborg.650.bch-vjot
-_myborg clone 900.bch                     https://github.com/bryanhann/myborg.bch.900
+_myborg clone 900.bch-misc                https://github.com/bryanhann/myborg.900.bch-misc
