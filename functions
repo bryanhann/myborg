@@ -1,0 +1,32 @@
+#!/bin/bash
+#This shebang is for synax only. Do not make executable!
+
+_myborg         () { _myborg_chevron "_myborg_$*" ; _myborg_$* ; }
+_myborg_warn    () { tput setaf 1; echo $*; tput sgr0; }
+_myborg_bold    () { tput bold; echo $*; tput sgr0; }
+_myborg_source  () { source $1 ; }
+_myborg_isource () { _myborg_insitu $(dirname $1) source ./insitu.d/insitu ; }
+_myborg_pushd   () { pushd ${1} > /dev/null || { myborg_warn cannot enter $1; return 99; }; }
+_myborg_popd    () { popd > /dev/null; }
+_myborg_chevron () { _myborg_bold '>>>' $*; }
+
+_myborg_insitu () {
+    _myborg_pushd $1 || return 99
+    shift
+    $*
+    err=$?
+    _myborg_popd
+    return ${err}
+}
+
+_myborg_sourceall () {
+    local hit
+    for hit in $(find ${MYBORG_MODS} -name insitu.d | sort); do
+        _myborg isource ${hit}
+    done
+}
+
+_myborg_clone () {
+    local DST=${MYBORG_MODS}/${1}
+    [ ! -d ${DST} ] && shift && git clone $* ${DST}
+}

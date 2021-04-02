@@ -3,32 +3,25 @@
 
 _export () { export $1=$2; }
 
-_export MYBORG          $(cat ~/.local/var/myborg/current.txt)
-_export MYBORG_BIN      ${HOME}/.local/var/myborg/mybin
-_export MYBORG_MODS     ${MYBORG}/.mods
-_export MYBORG_DOTS     ${MYBORG}/dots
+_export MYBORG      $(cat ~/.local/var/myborg/current.txt)
+_export MYBORG_BIN  ${HOME}/.local/var/myborg/mybin
+_export MYBORG_MODS ${MYBORG}/.mods
+_export MYBORG_DOTS ${MYBORG}/dots
+_export PATH        ${PATH}:${HOME}/.local/bin
 
-DST=${MYBORG}/.borg
-SRC="-b slim https://github.com/bryanhann/dot.borg"
-[ -d ${DST} ] || git clone ${SRC} ${DST}
-pushd ${DST} > /dev/null
-source ./insitu
-popd > /dev/null
+source ${MYBORG}/functions
 
-clone_myborg_mod () { 
-    local D=${MYBORG_MODS}/${1}
-    [ ! -d ${D} ] && shift && git clone $* ${D}
+__main () {
+    _myborg_chevron ++[$MYBORG/main] $*
+    _myborg source ${MYBORG}/index
+    _myborg sourceall
+    [ ! "$1" = "" ] && {
+        _myborg source borg:__first__
+        _myborg source ${MYBORG_DOTS}/dot$1
+        _myborg source borg:__last__
+        _myborg source borg:path:clean
+    }
+    _myborg_chevron --[$MYBORG/main] $*
 }
 
-_export PATH            ${PATH}:${HOME}/.local/bin
-
-myborg_clone_all
-
-myborg_main () {
-    source borg:__first__
-    myborg source ${MYBORG_DOTS}/dot$1
-    source borg:__last__
-    source borg:path:clean
-}
-
-[ ! "$1" = "" ] && myborg main $*
+__main $*
