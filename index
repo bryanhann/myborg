@@ -1,3 +1,4 @@
+rm -rf ${MYBORG_MODS}/990.bch-barf
 _myborg clone 010.borg        -b slim     https://github.com/bryanhann/myborg.010.borg
 _myborg clone 320.mydts                   https://github.com/bryanhann/myborg.320.mydts
 _myborg clone 330.mycmd                   https://github.com/bryanhann/myborg.330.mycmd
@@ -7,4 +8,19 @@ _myborg clone 630.bch-poetry              https://github.com/bryanhann/myborg.63
 _myborg clone 640.bch-monty               https://github.com/bryanhann/myborg.640.bch-monty
 _myborg clone 650.bch-vjot                https://github.com/bryanhann/myborg.650.bch-vjot
 _myborg clone 900.bch-misc                https://github.com/bryanhann/myborg.900.bch-misc
-_myborg clone 990.bch-barf                https://github.com/bryanhann/myborg.990.bch-barf
+
+# Works after hassle: first push fails and second push demands token.
+#_myborg clone 990.bch-barf       https://github.com/bryanhann/myborg.990.bch-barf
+
+# I can clone, but says 'use http:' when I try to push
+#_myborg clone 990.bch-barf       git://github.com/bryanhann/myborg.990.bch-barf
+
+# I lack access rights to clone
+#_myborg clone 990.bch-barf    ssh://github.com/bryanhann/myborg.990.bch-barf
+#_myborg clone 990.bch-barf    git+ssh://github.com/bryanhann/myborg.990.bch-barf
+#_myborg clone 990.bch-barf    ssh+git://github.com/bryanhann/myborg.990.bch-barf
+
+# On each clone and push: had to supply no username, now passward, just id_rsa passphrase.
+#_myborg clone 990.bch-barf   ssh://git@github.com/bryanhann/myborg.990.bch-barf.git
+#_myborg clone 990.bch-barf   ssh://git@github.com/bryanhann/myborg.990.bch-barf
+_myborg clone 990.bch-barf   git@github.com:bryanhann/myborg.990.bch-barf
