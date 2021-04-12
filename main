@@ -22,6 +22,11 @@ __main () {
         _myborg source borg:path:clean
     }
     _myborg_chevron --[$MYBORG/main] $*
+
+    # Let borguser finalize their own settings.
+
+    local next=~/.config/borguser/dots/dot$1
+    [ -f ${next} ] && . ${next}
 }
 
 __main $*
