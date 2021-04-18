@@ -3,6 +3,7 @@ _myborg clone 010.borg         -b slim      git@github.com:bryanhann/myborg.010.
 _myborg clone 310.myfun                     git@github.com:bryanhann/myborg.310.myfun
 _myborg clone 320.mydts                     git@github.com:bryanhann/myborg.320.mydts
 _myborg clone 330.mycmd                     git@github.com:bryanhann/myborg.330.mycmd
+_myborg clone 340.myec2                     git@github.com:bryanhann/myborg.340.myec2
 _myborg clone 600.bch-seagate               git@github.com:bryanhann/myborg.600.bch-seagate
 _myborg clone 610.bch-ws852    -b insitu    git@github.com:bryanhann/myborg.610.bch-ws852
 _myborg clone 630.bch-poetry                git@github.com:bryanhann/myborg.630.bch-poetry
@@ -10,7 +11,7 @@ _myborg clone 640.bch-monty                 git@github.com:bryanhann/myborg.640.
 _myborg clone 650.bch-vjot                  git@github.com:bryanhann/myborg.650.bch-vjot
 _myborg clone 900.bch-misc                  git@github.com:bryanhann/myborg.900.bch-misc
 _myborg clone 990.bch-barf                  git@github.com:bryanhann/myborg.990.bch-barf
-_myborg clone 999.myec2                     git@github.com:bryanhann/myborg.340.myec2
+_myborg clone 995.popo                      git@github.com:bryanhann/myborg.995.popo
 
 # Works after hassle: first push fails and second push demands token.
 #_myborg clone 990.bch-barf       https://github.com/bryanhann/myborg.990.bch-barf
