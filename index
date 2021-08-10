@@ -4,6 +4,7 @@ _myborg clone 310.myfun                     git@github.com:bryanhann/myborg.310.
 _myborg clone 320.mydts                     git@github.com:bryanhann/myborg.320.mydts
 _myborg clone 330.mycmd                     git@github.com:bryanhann/myborg.330.mycmd
 _myborg clone 340.myec2                     git@github.com:bryanhann/myborg.340.myec2
+_myborg clone 500.bch.personal.history      git@github.com:bryanhann/myborg.500.bch.personal.history
 _myborg clone 600.bch-seagate               git@github.com:bryanhann/myborg.600.bch-seagate
 _myborg clone 610.bch-ws852    -b insitu    git@github.com:bryanhann/myborg.610.bch-ws852
 _myborg clone 630.bch-poetry                git@github.com:bryanhann/myborg.630.bch-poetry
