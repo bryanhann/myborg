@@ -13,7 +13,7 @@ _myborg clone 650.bch-vjot                  git@github.com:bryanhann/myborg.650.
 _myborg clone 900.bch-misc                  git@github.com:bryanhann/myborg.900.bch-misc
 _myborg clone 990.bch-barf                  git@github.com:bryanhann/myborg.990.bch-barf
 _myborg clone 995.popo                      git@github.com:bryanhann/myborg.995.popo
-_myborg clone 999.bch-hack                  git@github.com:bryanhann/myborg.999.bch-arf
+_myborg clone 999.bchk                      git@github.com:bryanhann/myborg.999.bchk
 
 # Works after hassle: first push fails and second push demands token.
 #_myborg clone 990.bch-barf       https://github.com/bryanhann/myborg.990.bch-barf
