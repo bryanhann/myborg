@@ -1,19 +1,20 @@
 #rm -rf ${MYBORG_MODS}/990.bch-barf
-_myborg clone 010.borg         -b slim      git@github.com:bryanhann/myborg.010.borg
+_myborg clone 000.bchp.history.data         git@github.com:bryanhann/bchp.history.data
+_myborg clone 001.bchp.history.control      git@github.com:bryanhann/bchp.history.control
+_myborg clone 100.bchk.__base__             git@github.com:bryanhann/bchk.__base__
+_myborg clone 110.bchk.__more__             git@github.com:bryanhann/bchk.__more__
+_myborg clone 200.borg         -b slim      git@github.com:bryanhann/myborg.010.borg
 _myborg clone 310.myfun                     git@github.com:bryanhann/myborg.310.myfun
 _myborg clone 320.mydts                     git@github.com:bryanhann/myborg.320.mydts
 _myborg clone 330.mycmd                     git@github.com:bryanhann/myborg.330.mycmd
 _myborg clone 340.myec2                     git@github.com:bryanhann/myborg.340.myec2
-_myborg clone 400.bchk                      git@github.com:bryanhann/myborg.999.bchk
-_myborg clone 500.bch.personal.history      git@github.com:bryanhann/myborg.500.bch.personal.history
 _myborg clone 600.bch-seagate               git@github.com:bryanhann/myborg.600.bch-seagate
 _myborg clone 610.bch-ws852    -b insitu    git@github.com:bryanhann/myborg.610.bch-ws852
 _myborg clone 630.bch-poetry                git@github.com:bryanhann/myborg.630.bch-poetry
 _myborg clone 640.bch-monty                 git@github.com:bryanhann/myborg.640.bch-monty
 _myborg clone 650.bch-vjot                  git@github.com:bryanhann/myborg.650.bch-vjot
-_myborg clone 900.bch-misc                  git@github.com:bryanhann/myborg.900.bch-misc
-_myborg clone 990.bch-barf                  git@github.com:bryanhann/myborg.990.bch-barf
-_myborg clone 995.popo                      git@github.com:bryanhann/myborg.995.popo
+_myborg clone 820.popo                      git@github.com:bryanhann/myborg.995.popo
+_myborg clone 900.bch.misc                  git@github.com:bryanhann/myborg.900.bch-misc
 
 # Works after hassle: first push fails and second push demands token.
 #_myborg clone 990.bch-barf       https://github.com/bryanhann/myborg.990.bch-barf
