@@ -1,32 +1,62 @@
 #!/bin/bash
 #This shebang is for synax only. Do not make executable!
 
-_export () { export $1=$2; }
+export MYBORG=$(cat ~/.local/var/myborg/current.txt)
+export MYBORG_BIN=${HOME}/.local/var/myborg/mybin
+export MYBORG_MODS=${MYBORG}/.mods
+export MYBORG_DOTS=${MYBORG}/dots
+export PATH=${PATH}:${HOME}/.local/bin
 
-_export MYBORG      $(cat ~/.local/var/myborg/current.txt)
-_export MYBORG_BIN  ${HOME}/.local/var/myborg/mybin
-_export MYBORG_MODS ${MYBORG}/.mods
-_export MYBORG_DOTS ${MYBORG}/dots
-_export PATH        ${PATH}:${HOME}/.local/bin
-
-source ${MYBORG}/functions
-
-__main () {
-    _myborg_chevron ++[$MYBORG/main] $*
-    _myborg source ${MYBORG}/index
-    _myborg sourceall
-    [ ! "$1" = "" ] && {
-        _myborg source borg:__first__
-        _myborg source ${MYBORG_DOTS}/dot$1
-        _myborg source borg:__last__
-        _myborg source borg:path:clean
-    }
-    _myborg_chevron --[$MYBORG/main] $*
-
-    # Let borguser finalize their own settings.
-
-    local next=~/.config/borguser/dots/dot$1
-    [ -f ${next} ] && . ${next}
+main () {
+    echo "++[$MYBORG/main] $*"
+    echo loading mods       ; source ${MYBORG}/index
+    echo activating mods    ; __myborg_activate__
+    echo borgifying         ; __myborg_borgify__ $1
+    echo "++[$MYBORG/main] $*"
 }
 
-__main $*
+red     () { printf "$(tput bold)$(tput setaf 15)$(tput setab 1)$1$(tput sgr0)" ; }
+green   () { printf "$(tput bold)$(tput setaf 15)$(tput setab 2)$1$(tput sgr0)" ; }
+yellow  () { printf "$(tput bold)$(tput setaf 15)$(tput setab 3)$1$(tput sgr0)" ; }
+blue    () { printf "$(tput bold)$(tput setaf 15)$(tput setab 4)$1$(tput sgr0)" ; }
+ok      () { printf "$(tput bold)$(tput setaf 2)$(tput setab 15)$1$(tput sgr0)" ; }
+
+__myborg_load__ () {
+    name=${1}; src=${2}; shift 2; opt="${*}"; dst=${MYBORG_MODS}/${name}
+    printf "$(blue " module ") $(ok $name)"
+    [ ! -d ${dst} ] && { printf " cloning" ; git clone $opt $src $dst 2> /dev/null ; }
+    [ ! -d ${dst} ] && { printf " $(red " missing ")\n" ; return ; }
+    [   -d ${dst} ] && { printf " found\n" ; return ; }
+}
+
+__myborg_activate__ () {
+    _pushd () { pushd $1  > /dev/null 2> /dev/null ; }
+    _popd  () { popd  $1  > /dev/null 2> /dev/null ; }
+    _insitu () { _pushd $1 && { shift ; $* ; _popd ; } ; }
+    _short4mod () { echo ${1:${#MYBORG_MODS}:${#1}} ; }
+    find ${MYBORG_MODS} | grep "insitu.d/insitu" > o
+    find ${MYBORG_MODS} | grep ".insitu/activate" >> o
+    for path in $(sort o); do
+        [ "$(basename $path)" = "insitu"   ] && {
+            printf "$(blue "  old   ") $(ok $(_short4mod $path))\n"
+            _insitu $(dirname $(dirname $path)) source ./insitu.d/insitu
+        }
+        [ "$(basename $path)" = "activate" ] && {
+            printf "$(blue "  new   ") $(ok $(_short4mod $path))\n"
+            _insitu $(dirname $path) source  ./activate
+        }
+    done
+    rm o
+}
+
+__myborg_borgify__ () {
+    [ "$1" == "" ] && return
+    __bluesource () { printf "$(blue ' source ') $*\n" ; source $* ; }
+     __bluesource borg:__first__
+     __bluesource ${MYBORG_DOTS}/dot$1
+     __bluesource borg:__last__
+     __bluesource borg:path:clean
+}
+
+
+main $*
