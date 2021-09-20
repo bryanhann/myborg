@@ -1,0 +1,2 @@
+echo borg:path:add $1
+export PATH=$PATH:$1

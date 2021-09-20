@@ -1,0 +1,5 @@
+echo borg:source:tree $1
+for path in $(source borg:walk $1); do
+    [ -f $path ] && source borg:source:file $path
+done
+

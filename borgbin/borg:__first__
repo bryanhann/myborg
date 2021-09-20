@@ -1,0 +1,13 @@
+#!/bin/bash
+#This shebang is for synax only. Do not make executable!
+
+[ -z "$BORG_INIT_ID" ] && {
+    _export () { export $1=$2; }
+    _export BORG_INIT_ID        $$
+    _export BORG_INIT_DOTFILE   $1
+    _export BORG_INIT_ARGS      "$*"
+    _export BORG_MYBIN          ${HOME}/.local/var/myborg/mybin
+    _export BORG_SCRIPT_INPATH  ${BORG}/.scripts/inpath.py
+    mkdir -p ${BORG_MYBIN}
+    exit () { echo try \'builtin exit\' ; }
+}

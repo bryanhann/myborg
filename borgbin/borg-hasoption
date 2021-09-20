@@ -1,0 +1,7 @@
+target=$1
+shift
+for item in $*; do
+    [ "${target}" == "${item}" ] && exit 0
+done
+exit 1
+

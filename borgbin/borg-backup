@@ -1,0 +1,31 @@
+#!/bin/sh
+
+
+name=$(basename $0)
+log () { echo $name : $*; }
+_export () { export $1=$2; }
+[ -z ${2} ] && log too few args && exit 9
+
+src=$1
+dir=$2
+
+[ ! -f ${src} ] && log [$src] not found
+[ ! -f ${src} ] && exit 1
+
+[ ! -d ${dir} ] && mkdir -p ${dir}
+[ ! -d ${dir} ] && log $dir] is nonexistant
+[ ! -d ${dir} ] && exit 2
+
+_export base            $(basename $src)
+_export old_prefix      latest
+_export new_prefixs     $(date "+%Y-%m-%d-T-%H-%M-%S")
+_export old             ${dir}/${old_prefix}:${base}
+_export new             ${dir}/${new_prefix}:${base}
+
+borg-cmp $src $old && log [$src]: no change  && exit 0
+#matches $src $old && echo source [$src] has not change since last backup  && exit 0
+cp ${src} ${old}
+cp ${src} ${new}
+log [$src] copied to backup
+
+

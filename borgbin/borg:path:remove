@@ -1,0 +1,3 @@
+NEWPATH=$(borg-path remove $*)
+echo NEWPATH: [$NEWPATH]
+[ ! -z "$NEWPATH" ] && export PATH=${NEWPATH}

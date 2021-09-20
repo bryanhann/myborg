@@ -1,0 +1,38 @@
+#!/bin/sh
+
+PROG=$(basename $0)
+
+### REQUIRE THE -t FLAG TO RUN THE TEST
+
+[ "$1" = "-t" ] && {
+    export count=0
+    while read xx; do
+        count=$(( $count + 1 ))
+        line=${xx}
+    done
+    [ "${count}" = "1" ] && echo        "${line}"                           && exit 0
+    [ "${count}" = "0" ] && echo >&2    "[$PROG]: error: no hits"           && exit 1
+    [ . = .            ] && echo >&2    "[$PROG]: error: duplicate hits"    && exit 2
+    exit 66
+}
+
+### OTHERWISE PRINT HELP
+
+cat << EOF
+BORG-UNIQ
+    Test for uniqueness in a stream of lines.
+
+USAGE:
+    <stream-of-lines> | ${PROG} -t
+
+DESCRIPTION:
+    If the input stream consists of exactly one line echo that
+    line to stdout. Otherwise echo an error message to stderr.
+
+    Exit value:
+        0 if stream contains precisely one line
+        1 if the stream contains no lines
+        2 if the stream contains more than one line
+EOF
+exit
+}

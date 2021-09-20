@@ -1,0 +1,11 @@
+# list all paths under $1 whose components start with a digit
+
+__walk () {
+  for name in $(/bin/ls ${1}|grep ^[0-9]|sort); do
+    path=$1/$name
+    echo $path
+    [ -d $path ] && __walk $path
+  done
+}
+__walk $1
+

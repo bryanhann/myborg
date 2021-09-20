@@ -1,0 +1,17 @@
+#  USAGE:
+#      borg-assert-insitu [FULL-PATHNAME-OF-SCRIPT}
+#
+#       A sourced script will use this to determine whether it
+#       is being sourced insitu. If it being sourced insitu then
+#       silently return errorcode 0. If not, print an error message
+#       and return errorcode 1.
+#
+
+[ "$(dirname ${1})" == "${PWD}" ] && exit 0
+
+cat <<EOF
+[$0]:
+    Script path: [$1].
+    Sourced from: [$PWD].
+EOF
+exit 1
