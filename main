@@ -6,12 +6,14 @@ export MYBORG_BIN=${HOME}/.local/var/myborg/mybin
 export MYBORG_MODS=${MYBORG}/.mods
 export MYBORG_DOTS=${MYBORG}/dots
 export PATH=${PATH}:${HOME}/.local/bin
+export PATH=${PATH}:${MYBORG}/bin
+export PYTHONPATH=${MYBORG}/lib
 
 main () {
     echo "++[$MYBORG/main] $*"
-    echo loading mods       ; source ${MYBORG}/index
-    echo activating mods    ; __myborg_activate__
-    echo borgifying         ; __myborg_borgify__ $1
+    echo processing index...   ; __myborg__.load-index
+    echo activating mods...    ; __myborg_activate__
+    echo borgifying...         ; __myborg_borgify__ $1
     echo "++[$MYBORG/main] $*"
 }
 
@@ -21,42 +23,29 @@ yellow  () { printf "$(tput bold)$(tput setaf 15)$(tput setab 3)$1$(tput sgr0)" 
 blue    () { printf "$(tput bold)$(tput setaf 15)$(tput setab 4)$1$(tput sgr0)" ; }
 ok      () { printf "$(tput bold)$(tput setaf 2)$(tput setab 15)$1$(tput sgr0)" ; }
 
-__myborg_load__ () {
-    name=${1}; src=${2}; shift 2; opt="${*}"; dst=${MYBORG_MODS}/${name}
-    printf "$(blue " module ") $(ok $name)"
-    [ ! -d ${dst} ] && { printf " cloning" ; git clone $opt $src $dst 2> /dev/null ; }
-    [ ! -d ${dst} ] && { printf " $(red " missing ")\n" ; return ; }
-    [   -d ${dst} ] && { printf " found\n" ; return ; }
+__myborg_source__ () {
+    #[ "$1" = "-q" ] || __myborg_note__ sourcing $*
+    [ "$1" = "-q" ] || __myborg__.note sourcing $*
+    [ "$1" = "-q" ] && shift
+    source $*
 }
-
-__myborg_activate__ () {
-    _pushd () { pushd $1  > /dev/null 2> /dev/null ; }
-    _popd  () { popd  $1  > /dev/null 2> /dev/null ; }
-    _insitu () { _pushd $1 && { shift ; $* ; _popd ; } ; }
-    _short4mod () { echo ${1:${#MYBORG_MODS}:${#1}} ; }
-    find ${MYBORG_MODS} | grep "insitu.d/insitu" > o
-    find ${MYBORG_MODS} | grep ".insitu/activate" >> o
-    for path in $(sort o); do
-        [ "$(basename $path)" = "insitu"   ] && {
-            printf "$(blue "  old   ") $(ok $(_short4mod $path))\n"
-            _insitu $(dirname $(dirname $path)) source ./insitu.d/insitu
-        }
-        [ "$(basename $path)" = "activate" ] && {
-            printf "$(blue "  new   ") $(ok $(_short4mod $path))\n"
-            _insitu $(dirname $path) source  ./activate
-        }
-    done
-    rm o
-}
-
 __myborg_borgify__ () {
-    [ "$1" == "" ] && return
-    __bluesource () { printf "$(blue ' source ') $*\n" ; source $* ; }
-     __bluesource borg:__first__
-     __bluesource ${MYBORG_DOTS}/dot$1
-     __bluesource borg:__last__
-     __bluesource borg:path:clean
+    # THIS RELIES ON BORG MODULE LOADED AND ACTIVATED.
+    [ ! "$1" == "" ] && {
+         __myborg_source__ borg:__first__
+        __myborg_source__ ${MYBORG_DOTS}/dot$1
+        __myborg_source__ borg:__last__
+        __myborg_source__ borg:path:clean
+    }
 }
-
+__myborg_activate__ () {
+    local mytmp=$(__myborg__.tmpdir delete.me)
+    local myout=${mytmp}/script ; touch $myout ; chmod +x $myout
+    __myborg__.generate-activation-script  > $myout
+    > /dev/null 2>/dev/null     pushd $PWD
+    source $myout
+    > /dev/null 2>/dev/null     popd
+    rm -rf ${mytmp}
+}
 
 main $*

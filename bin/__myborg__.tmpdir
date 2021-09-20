@@ -1,0 +1,4 @@
+#!/bin/bash
+_tmp=~/tmp/$1_$(date "+%s")
+mkdir -p $_tmp
+echo $_tmp
