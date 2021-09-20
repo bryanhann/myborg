@@ -1,5 +1,4 @@
-#!/bin/bash
-#This shebang is for synax only. Do not make executable!
+#!/source/this/sh
 
 export MYBORG=$(cat ~/.local/var/myborg/current.txt)
 export MYBORG_BIN=${HOME}/.local/var/myborg/mybin
@@ -7,6 +6,7 @@ export MYBORG_MODS=${MYBORG}/.mods
 export MYBORG_DOTS=${MYBORG}/dots
 export PATH=${PATH}:${HOME}/.local/bin
 export PATH=${PATH}:${MYBORG}/bin
+export PATH=${PATH}:${MYBORG}/borgbin
 export PYTHONPATH=${MYBORG}/lib
 
 main () {
@@ -24,7 +24,6 @@ blue    () { printf "$(tput bold)$(tput setaf 15)$(tput setab 4)$1$(tput sgr0)" 
 ok      () { printf "$(tput bold)$(tput setaf 2)$(tput setab 15)$1$(tput sgr0)" ; }
 
 __myborg_source__ () {
-    #[ "$1" = "-q" ] || __myborg_note__ sourcing $*
     [ "$1" = "-q" ] || __myborg__.note sourcing $*
     [ "$1" = "-q" ] && shift
     source $*
