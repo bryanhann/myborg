@@ -4,7 +4,6 @@ __myborg_load__     000.bchp.history.data       git@github.com:bryanhann/bchp.hi
 __myborg_load__     001.bchp.history.control    git@github.com:bryanhann/bchp.history.control
 __myborg_load__     100.bchk.__base__           git@github.com:bryanhann/bchk.__base__
 __myborg_load__     110.bchk.__more__           git@github.com:bryanhann/bchk.__more__
-#__myborg_load__     200.borg                    git@github.com:bryanhann/myborg.010.borg -b slim
 __myborg_load__     310.myfun                   git@github.com:bryanhann/myborg.310.myfun
 __myborg_load__     320.mydts                   git@github.com:bryanhann/myborg.320.mydts
 __myborg_load__     330.mycmd                   git@github.com:bryanhann/myborg.330.mycmd
@@ -15,4 +14,4 @@ __myborg_load__     630.bch-poetry              git@github.com:bryanhann/myborg.
 __myborg_load__     640.bch-monty               git@github.com:bryanhann/myborg.640.bch-monty
 __myborg_load__     650.bch-vjot                git@github.com:bryanhann/myborg.650.bch-vjot
 __myborg_load__     820.popo                    git@github.com:bryanhann/myborg.995.popo
-__myborg_load__     400.invalid                 git@github.com:bryanhann/myborg.340.invalid -b invalid_branch
+#__myborg_load__     0.invalid                   git@github.com:bryanhan/myborg.invali
