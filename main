@@ -38,13 +38,17 @@ __myborg_borgify__ () {
     }
 }
 __myborg_activate__ () {
-    local mytmp=$(__myborg__.tmpdir delete.me)
-    local myout=${mytmp}/script ; touch $myout ; chmod +x $myout
-    __myborg__.generate-activation-script  > $myout
-    > /dev/null 2>/dev/null     pushd $PWD
-    source $myout
-    > /dev/null 2>/dev/null     popd
-    rm -rf ${mytmp}
+    for name in $(ls ${MYBORG_MODS} | grep "\d.*"); do
+        path=${MYBORG_MODS}/$name
+        [ -f ${path}/.insitu/activate ] || {
+            printf "[skip] \t[$name]\n"
+            continue
+        }
+        printf "[ ok ] \t[$name]\n"
+        > /dev/null 2>/dev/null     pushd $path/.insitu
+        . ./activate
+        > /dev/null 2>/dev/null     popd
+    done
 }
 
 main $*
