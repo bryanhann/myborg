@@ -64,11 +64,6 @@ class IndexObject:
         ret.line=line
         ret.ok=ok
         return ret
-        print( f'[{name}]'.ljust(35), end='' )
-        print( f'rbranch/ibranch: [{rbranch}]/[{ibranch}]' , end='' )
-        print( f'ok:[{ok}]')
-        print(line)
-        return ok
 
 
 def index_dict():

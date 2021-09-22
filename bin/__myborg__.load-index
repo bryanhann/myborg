@@ -1,28 +1,12 @@
 #!/usr/bin/env python3
-import sys
-
-import gitstat as G
 import constants as CC
-import utility as U
-
+import handle as HH 
 def main():
-    #print( 'missing:', CC.MISSING2 )
-    #print( 'extra:', CC.EXTRA2 )
-
     for obj in CC.index_dict().values():
-        result = obj.test_dst()
-        print('[----] checking:\t'+ result.line)
-        if not obj.dst().is_dir():
-            print( f'[----] cloning: \t[{obj.name()}] ', end='' )
-            result = obj.clone()
-            err = result.returncode
-            print( f'err:[{err}]' , end='' )
-            print( '\r', end='' )
-            if err:
-                print('[fail]')
-            else:
-                print('[pass]')
-
+        if obj.dst().is_dir():
+            HH.handle_found(obj)
+        else:
+            HH.handle_notfound(obj)
 if __name__=='__main__':
-    with open(U.LOGFILE, 'w') as LOG:
-        main()
+    main()
+
