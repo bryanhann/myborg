@@ -4,6 +4,7 @@ export MYBORG=$(cat ~/.local/var/myborg/current.txt)
 export MYBORG_BIN=${HOME}/.local/var/myborg/mybin
 export MYBORG_MODS=${MYBORG}/.mods
 export MYBORG_DOTS=${MYBORG}/dots
+export MYBORG_OPT=$HOME/.local/opt/MYBORG_OPT
 export PATH=${PATH}:${HOME}/.local/bin
 export PATH=${PATH}:${MYBORG}/bin
 export PATH=${PATH}:${MYBORG}/borgbin
@@ -24,7 +25,8 @@ blue    () { printf "$(tput bold)$(tput setaf 15)$(tput setab 4)$1$(tput sgr0)" 
 ok      () { printf "$(tput bold)$(tput setaf 2)$(tput setab 15)$1$(tput sgr0)" ; }
 
 __myborg_source__ () {
-    [ "$1" = "-q" ] || __myborg__.note sourcing $*
+    #[ "$1" = "-q" ] || __myborg__.note sourcing $*
+    [ "$1" = "-q" ] || __myborg_note__ sourcing $*
     [ "$1" = "-q" ] && shift
     source $*
 }
@@ -50,5 +52,7 @@ __myborg_activate__ () {
         > /dev/null 2>/dev/null     popd
     done
 }
-
+__myborg_note__ () {
+    printf "$1:\t" ; shift ; printf "[$*]" ; echo
+}
 main $*
