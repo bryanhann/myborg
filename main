@@ -5,6 +5,7 @@ export MYBORG_BIN=${HOME}/.local/var/myborg/mybin
 export MYBORG_MODS=${MYBORG}/.mods
 export MYBORG_DOTS=${MYBORG}/dots
 export MYBORG_OPT=$HOME/.local/opt/MYBORG_OPT
+export MYBORG_MANIFEST=${MYBORG}/MANIFEST
 export PATH=${PATH}:${HOME}/.local/bin
 export PATH=${PATH}:${MYBORG}/bin
 export PATH=${PATH}:${MYBORG}/borgbin

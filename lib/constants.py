@@ -4,8 +4,9 @@ import utility as U
 import gitstat as G
 from pprint import pprint
 
-MYBORG_MODS=Path(os.environ['MYBORG_MODS'])
-MYBORG=Path(os.environ['MYBORG'])
+MYBORG      = Path(os.environ[ 'MYBORG'          ])
+MYBORG_MODS = Path(os.environ[ 'MYBORG_MODS'     ])
+MANIFEST    = Path(os.environ[ 'MYBORG_MANIFEST' ])
 SPACE=' '
 
 class IndexObject:
@@ -69,7 +70,7 @@ class IndexObject:
 def index_dict():
     def items():
         prefix = '__myborg_load__ '
-        for line in U.readlines( MYBORG/'index'):
+        for line in U.readlines( MANIFEST):
             line = line.strip()
             if not line: continue
             if line.startswith('#'): continue
