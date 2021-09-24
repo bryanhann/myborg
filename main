@@ -13,9 +13,9 @@ export PYTHONPATH=${MYBORG}/lib
 
 main () {
     echo "++[$MYBORG/main] $*"
-    echo processing index...   ; __myborg__.load-index
-    echo activating mods...    ; __myborg_activate__
-    echo borgifying...         ; __myborg_borgify__ $1
+    echo processing index...   ; __myborg.manifest
+    echo activating mods...    ; __myborg_activate
+    echo borgifying...         ; __myborg_borgify $1
     echo "++[$MYBORG/main] $*"
 }
 
@@ -25,22 +25,20 @@ yellow  () { printf "$(tput bold)$(tput setaf 15)$(tput setab 3)$1$(tput sgr0)" 
 blue    () { printf "$(tput bold)$(tput setaf 15)$(tput setab 4)$1$(tput sgr0)" ; }
 ok      () { printf "$(tput bold)$(tput setaf 2)$(tput setab 15)$1$(tput sgr0)" ; }
 
-__myborg_source__ () {
-    #[ "$1" = "-q" ] || __myborg__.note sourcing $*
+__myborg_source () {
     [ "$1" = "-q" ] || __myborg_note__ sourcing $*
     [ "$1" = "-q" ] && shift
     source $*
 }
-__myborg_borgify__ () {
-    # THIS RELIES ON BORG MODULE LOADED AND ACTIVATED.
+__myborg_borgify () {
     [ ! "$1" == "" ] && {
-         __myborg_source__ borg:__first__
-        __myborg_source__ ${MYBORG_DOTS}/dot$1
-        __myborg_source__ borg:__last__
-        __myborg_source__ borg:path:clean
+        __myborg_source borg:__first__
+        __myborg_source ${MYBORG_DOTS}/dot$1
+        __myborg_source borg:__last__
+        __myborg_source borg:path:clean
     }
 }
-__myborg_activate__ () {
+__myborg_activate () {
     for name in $(ls ${MYBORG_MODS} | sort); do
         path=${MYBORG_MODS}/$name
         [ -f ${path}/.insitu/activate ] || {
