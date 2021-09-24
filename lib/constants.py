@@ -69,13 +69,13 @@ class IndexObject:
 
 def index_dict():
     def items():
-        prefix = '__myborg_load__ '
+        #prefix = '__myborg_load__ '
         for line in U.readlines( MANIFEST):
             line = line.strip()
             if not line: continue
             if line.startswith('#'): continue
-            if not line.startswith( prefix ): continue
-            line = line[len(prefix):].strip()
+            #if not line.startswith( prefix ): continue
+            #line = line[len(prefix):].strip()
             obj=IndexObject(line)
             yield obj.name(), obj
     global __INDEX_OBJECTS
