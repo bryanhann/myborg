@@ -1,0 +1,7 @@
+#!/bin/sh
+root=$1
+[ "${root}" = "" ] && root=${PWD}
+[ -d ${root} ] || exit
+for name in $(/bin/ls ${root}); do
+    echo ${root}/${name}
+done

@@ -1,0 +1,31 @@
+#!/bin/sh
+
+usage () {
+cat >&2 <<HERE
+USAGE:
+        $(basename $0)
+
+DESCRIPION:
+        If [.insitu] echo parent directory and exit 0.
+        Else, silently exit with non-0
+HERE
+exit 0
+}
+
+main () {
+    case .${1} in
+        .)
+            borg.insitu.assert 2> /dev/null && echo $(dirname ${PWD})
+            exit
+            ;;
+        .-h|.--help|.help)
+            usage
+            ;;
+        *)
+            echo [$(basename $0)]: bad usage. Try [-h].
+            ;;
+    esac
+
+ }
+
+main $*

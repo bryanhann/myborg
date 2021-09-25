@@ -1,0 +1,5 @@
+#!/bin/sh
+[ "$1" = ""  ] && exit
+[ ! -d "$1"  ] && exit
+rm  ${1}/* 2> /dev/null
+rmdir ${1}
