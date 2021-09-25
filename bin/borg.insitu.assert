@@ -1,17 +1,27 @@
-#  USAGE:
-#      borg-assert-insitu [FULL-PATHNAME-OF-SCRIPT}
-#
-#       A sourced script will use this to determine whether it
-#       is being sourced insitu. If it being sourced insitu then
-#       silently return errorcode 0. If not, print an error message
-#       and return errorcode 1.
-#
+#!/bin/sh
 
-[ "$(dirname ${1})" == "${PWD}" ] && exit 0
+insitu () {
+    [ "$(basename ${PWD})" = ".insitu" ]
+}
 
-cat <<EOF
-[$0]:
-    Script path: [$1].
-    Sourced from: [$PWD].
-EOF
+[ "$1" = "" ] && insitu && exit 0
+
+##
+## AN ARG WAS PROVIDES OR WE ARE NOT INSITU.
+## PRINT USAGE TO STDOUT AND EXIT WITH ERROR.
+##
+
+cat >&2 <<HERE
+USAGE:
+        $(basename $0)
+
+DESCRIPION:
+        Return whether or not [\${PWD}] ends with [.insitu].
+
+        A sourced script will call this without arguments to determine
+        whether it is being sourced insituy. If it is, silently exit
+        withg errorcode 0. If not, print this help message to STDERRi
+        and exit with errorcode 1.
+HERE
+
 exit 1
