@@ -1,0 +1,31 @@
+#!/source/this/sh
+
+# PREFS
+
+__lbin_bin        () { echo ~/.local/bin/LBIN   ; }
+__lbin_prefix     () { echo lbin                ; }
+
+# FUNCTIONALITY
+
+__lbin_add    () {
+    borg.insitu.assert || return
+    cp ${1} $(__lbin_bin)
+}
+
+__lbin_load () {
+    borg.insitu.assert || return
+    [ "$1" = "" ] && echo "[__lbin_load()]: missing arg"
+    for path in $(borg.ls.fullpath $1); do
+        __lbin_add $path
+    done
+}
+__lbin_default () {
+    borg.insitu.assert || return
+    __lbin_load $(borg.insitu.path)/lbin
+}
+
+borg.safe-rmdir     $(__lbin_bin)
+mkdir -p            $(__lbin_bin)
+. borg.path.src.add $(__lbin_bin)
+__lbin_default
+
