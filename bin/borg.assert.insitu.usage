@@ -1,0 +1,10 @@
+USAGE:
+        bch.assert.insitu
+
+DESCRIPION:
+        Return whether or not [\${PWD}] ends with [.insitu].
+
+        A sourced script will call this without arguments to determine
+        whether it is being sourced insituy. If it is, silently exit
+        withg errorcode 0. If not, print this help message to STDERRi
+        and exit with errorcode 1.

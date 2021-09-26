@@ -1,0 +1,9 @@
+#!/bin/sh
+echo
+echo EXCEPTION:
+echo $(basename $0):
+while [ ! "$1" = "" ]; do
+    echo "$1"
+    shift
+done
+return 66

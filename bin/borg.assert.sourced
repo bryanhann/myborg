@@ -1,0 +1,6 @@
+#!/bin/sh
+
+SHELLNAMES=" bash sh "
+for name in ${SHELLNAMES}; do [ "$1" = "$name" ] && exit 0 ; done
+borg.exc.assert_failed \
+    "  $(basename $0): [$1]" \

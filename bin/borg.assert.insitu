@@ -1,0 +1,10 @@
+#!/bin/sh
+[ "$1" = "" ] || cat ${0}.usage
+[ "$1" = "" ] || exit 1
+
+[ "$(basename ${PWD})" = ".insitu" ] && exit 0
+
+borg.exc.assert_failed \
+    $NAME \
+    "called from [$PWD]"
+exit 1

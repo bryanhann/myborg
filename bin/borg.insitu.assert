@@ -1,27 +1,3 @@
 #!/bin/sh
-
-insitu () {
-    [ "$(basename ${PWD})" = ".insitu" ]
-}
-
-[ "$1" = "" ] && insitu && exit 0
-
-##
-## AN ARG WAS PROVIDES OR WE ARE NOT INSITU.
-## PRINT USAGE TO STDOUT AND EXIT WITH ERROR.
-##
-
-cat >&2 <<HERE
-USAGE:
-        $(basename $0)
-
-DESCRIPION:
-        Return whether or not [\${PWD}] ends with [.insitu].
-
-        A sourced script will call this without arguments to determine
-        whether it is being sourced insituy. If it is, silently exit
-        withg errorcode 0. If not, print this help message to STDERRi
-        and exit with errorcode 1.
-HERE
-
-exit 1
+echo "WARNING: [borg.insitu.assert] is deprecated. Use [borg.assert.insitu] instead."
+borg.assert.insitu $*
