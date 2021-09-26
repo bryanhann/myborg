@@ -2,6 +2,7 @@
 .BUILD
 .mods
 .borg
+.lbin
 __pycache__
 hide
 junk.*
