@@ -1,11 +1,15 @@
 #!/source/this/sh
 
 # PREFS
-
 __lbin_bin        () { echo ~/.local/bin/LBIN   ; }
 __lbin_prefix     () { echo lbin                ; }
 
-# FUNCTIONALITY
+# PREPARE LBIN
+borg.safe-rmdir     $(__lbin_bin)
+mkdir -p            $(__lbin_bin)
+. borg.path.src.add $(__lbin_bin)
+
+# CLIENT FUNCTIONS
 
 __lbin_add    () {
     borg.insitu.assert || return
@@ -24,8 +28,4 @@ __lbin_default () {
     __lbin_load $(borg.insitu.path)/lbin
 }
 
-borg.safe-rmdir     $(__lbin_bin)
-mkdir -p            $(__lbin_bin)
-. borg.path.src.add $(__lbin_bin)
-__lbin_default
 
