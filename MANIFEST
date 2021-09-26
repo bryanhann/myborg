@@ -3,14 +3,13 @@
 001.bchp.history.control    git@github.com:bryanhann/bchp.history.control
 100.bchk.__base__           git@github.com:bryanhann/bchk.__base__
 110.bchk.__more__           git@github.com:bryanhann/bchk.__more__
-200.bchl.__base__           git@github.com:bryanhann/bchl.__base__
-210.bchl.mount              git@github.com:bryanhann/bchl.mount
+210.lbin.bch.mnt            git@github.com:bryanhann/lbin.bch.mnt
 #310.myfun                   git@github.com:bryanhann/myborg.310.myfun
 320.mydts                   git@github.com:bryanhann/myborg.320.mydts
 330.mycmd                   git@github.com:bryanhann/myborg.330.mycmd
 340.myec2                   git@github.com:bryanhann/myborg.340.myec2
 600.bch-seagate             git@github.com:bryanhann/myborg.600.bch-seagate
-610.bch-ws852               git@github.com:bryanhann/myborg.610.bch-ws852 -b insitu
+610.lbin.bch.ws852          git@github.com:bryanhann/myborg.610.bch-ws852 -b insitu
 630.bch-poetry              git@github.com:bryanhann/myborg.630.bch-poetry
 640.bch-monty               git@github.com:bryanhann/myborg.640.bch-monty
 650.bch-vjot                git@github.com:bryanhann/myborg.650.bch-vjot
