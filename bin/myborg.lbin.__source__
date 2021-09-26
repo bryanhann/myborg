@@ -14,19 +14,19 @@ mkdir -p            $(__lbin_bin)
 # CLIENT FUNCTIONS
 
 __lbin_add    () {
-    borg.insitu.assert || return
+    borg.assert.insitu || return
     cp ${1} $(__lbin_bin)
 }
 
 __lbin_load () {
-    borg.insitu.assert || return
+    borg.assert.insitu || return
     [ "$1" = "" ] && echo "[__lbin_load()]: missing arg"
     for path in $(borg.ls.fullpath $1); do
         __lbin_add $path
     done
 }
 __lbin_default () {
-    borg.insitu.assert || return
+    borg.assert.insitu|| return
     __lbin_load $(borg.insitu.path)/lbin
 }
 
