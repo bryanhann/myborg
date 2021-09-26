@@ -1,3 +1,3 @@
 #!/bin/sh
-echo "WARNING: [borg.insitu.assert] is deprecated. Use [borg.assert.insitu] instead."
+echo "WARNING: [borg.insitu.assert] is deprecated. Use [borg.assert.insitu] instead." > /dev/stderr
 borg.assert.insitu $*
