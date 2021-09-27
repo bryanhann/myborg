@@ -1,0 +1,12 @@
+#!/source/this/sh
+main () {
+    local target=$1
+    [ -z "$target" ] && return 1
+    [ -f "$target/.insitu/activate" ] || return 2
+    pushd "$target/.insitu" > /dev/null
+    . ./activate
+    popd > /dev/null
+    return 0
+}
+
+main $1
