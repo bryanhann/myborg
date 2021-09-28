@@ -5,6 +5,7 @@
 210.lbin.bch.mnt            git@github.com:bryanhann/lbin.bch.mnt
 230.lbin.bch.ws852          git@github.com:bryanhann/lbin.bch.ws852 -b insitu
 240.lbin.bch.vjot           git@github.com:bryanhann/lbin.bch.vjot
+250.lbin.bch.zjot           git@github.com:bryanhann/lbin.bch.zjot
 320.mydts                   git@github.com:bryanhann/myborg.320.mydts
 330.mycmd                   git@github.com:bryanhann/myborg.330.mycmd
 340.myec2                   git@github.com:bryanhann/myborg.340.myec2
