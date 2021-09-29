@@ -1,0 +1,1 @@
+${MYBORG_VENDOR}/bats/bats-core/bin/bats $*
