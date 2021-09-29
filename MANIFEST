@@ -1,5 +1,5 @@
-000.bchp.history.data       git@github.com:bryanhann/bchp.history.data
-001.bchp.history.control    git@github.com:bryanhann/bchp.history.control
+100.lbin.bch.bats-core      git@github.com:bryanhann/lbin.bch.bats-core
+200.lbin.bch.borgtry        git@github.com:bryanhann/lbin.bch.borgtry
 210.lbin.bch.mnt            git@github.com:bryanhann/lbin.bch.mnt
 230.lbin.bch.ws852          git@github.com:bryanhann/lbin.bch.ws852 -b insitu
 240.lbin.bch.vjot           git@github.com:bryanhann/lbin.bch.vjot
@@ -8,6 +8,8 @@
 270.lbin.bch.popo           git@github.com:bryanhann/lbin.bch.popo  -b lbin
 280.lbin.bch.poetry         git@github.com:bryanhann/lbin.bch.poetry
 290.lbin.bch.monty          git@github.com:bryanhann/lbin.bch.monty
+800.bchp.history.data       git@github.com:bryanhann/bchp.history.data
+810.bchp.history.control    git@github.com:bryanhann/bchp.history.control
 900.bch.misc                git@github.com:bryanhann/myborg.900.bch-misc
 #320.mydts                   git@github.com:bryanhann/myborg.320.mydts
 #330.mycmd                   git@github.com:bryanhann/myborg.330.mycmd
