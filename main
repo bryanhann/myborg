@@ -24,8 +24,8 @@ export_ () { export $1=$2 ; }
 # DEFINE EXTERNAL PATHS
 #-------------------------------------------------------------
 
-    export_ MYBORG_BIN      ${HOME}/.local/var/myborg/mybin
-    export_ MYBORG_BUILD    ${HOME}/.local/var/myborg/mybin
+#    export_ MYBORG_BIN      ${HOME}/.local/var/myborg/mybin
+#    export_ MYBORG_BUILD    ${HOME}/.local/var/myborg/mybin
     export_ MYBORG_OPT      ${HOME}/.local/opt/MYBORG_OPT
 
 # PREPARE ENVIRONMENT
@@ -42,6 +42,7 @@ export_ () { export $1=$2 ; }
 
 main () {
     echo "++[$MYBORG/main] $*"
+    echo processing VENDOR     ; ${MYBORG}/VENDOR
     echo processing index...   ; __myborg.manifest
     echo activating mods...    ; __myborg_activate
     echo borgifying...         ; __myborg_borgify $1
