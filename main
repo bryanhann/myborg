@@ -1,19 +1,43 @@
 #!/source/this/sh
 
-export MYBORG=$(cat ~/.local/var/myborg/current.txt)
-export MYBORG_BIN=${HOME}/.local/var/myborg/mybin
-export MYBORG_MODS=${MYBORG}/.mods
-export MYBORG_DOTS=${MYBORG}/dots
-export MYBORG_SBIN=${MYBORG}/bin
-export MYBORG_OPT=$HOME/.local/opt/MYBORG_OPT
-export MYBORG_LBIN_BIN=${MYBORG}/.lbin
-export MYBORG_LBIN_PREFIX=${MYBORG}/lbin
-export MYBORG_MANIFEST=${MYBORG}/MANIFEST
-export PATH=${PATH}:${HOME}/.local/bin
-export PATH=${PATH}:${MYBORG}/bin
-export PYTHONPATH=${MYBORG}/lib
+export_ () { export $1=$2 ; }
 
-. ${MYBORG_SBIN}/myborg.lbin.__source__
+# DETERMINE MY LOCATION (./install writes this file)
+#-------------------------------------------------------------
+    export_ MYBORG          $(cat ~/.local/var/myborg/current.txt)
+
+# DEFINE PERMANENT INTERNAL PATHS
+#-------------------------------------------------------------
+    export_ MYBORG_SBIN     ${MYBORG}/bin
+    export_ MYBORG_SLIB     ${MYBORG}/lib
+    export_ MYBORG_MANIFEST ${MYBORG}/MANIFEST
+    export_ MYBORG_DOTS     ${MYBORG}/dots
+
+# DEFINE BUILD PATHS
+#-------------------------------------------------------------
+    export_ MYBORG_BUILD        ${MYBORG}/.build
+    export_ MYBORG_MODS         ${MYBORG_BUILD}/mods
+    export_ MYBORG_LBIN_BIN     ${MYBORG_BUILD}/lbin
+    export_ MYBORG_LBIN_PREFIX  ${MYBORG}/lbin
+
+# DEFINE EXTERNAL PATHS
+#-------------------------------------------------------------
+
+    export_ MYBORG_BIN      ${HOME}/.local/var/myborg/mybin
+    export_ MYBORG_BUILD    ${HOME}/.local/var/myborg/mybin
+    export_ MYBORG_OPT      ${HOME}/.local/opt/MYBORG_OPT
+
+# PREPARE ENVIRONMENT
+#-------------------------------------------------------------
+    export_ PYTHONPATH      ${MYBORG_SLIB}
+    export_ PATH            ${PATH}:${MYBORG_SBIN}
+    mkdir -p ${MYBORG_BUILD}
+    . myborg.lbin.__source__
+
+# BE NICE.
+#-------------------------------------------------------------
+    export_ PATH            ${PATH}:${HOME}/.local/bin
+
 
 main () {
     echo "++[$MYBORG/main] $*"
@@ -22,12 +46,6 @@ main () {
     echo borgifying...         ; __myborg_borgify $1
     echo "++[$MYBORG/main] $*"
 }
-
-red     () { printf "$(tput bold)$(tput setaf 15)$(tput setab 1)$1$(tput sgr0)" ; }
-green   () { printf "$(tput bold)$(tput setaf 15)$(tput setab 2)$1$(tput sgr0)" ; }
-yellow  () { printf "$(tput bold)$(tput setaf 15)$(tput setab 3)$1$(tput sgr0)" ; }
-blue    () { printf "$(tput bold)$(tput setaf 15)$(tput setab 4)$1$(tput sgr0)" ; }
-ok      () { printf "$(tput bold)$(tput setaf 2)$(tput setab 15)$1$(tput sgr0)" ; }
 
 __myborg_source () {
     [ "$1" = "-q" ] || __myborg_note__ sourcing $*
