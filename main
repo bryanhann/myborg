@@ -17,6 +17,7 @@ export_ () { export $1=$2 ; }
 #-------------------------------------------------------------
     export_ MYBORG_BUILD        ${MYBORG}/.build
     export_ MYBORG_MODS         ${MYBORG_BUILD}/mods
+    export_ MYBORG_VENDOR       ${MYBORG_BUILD}/vendor
     export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
     export_ MYBORG_LBIN_PREFIX  ${MYBORG}/lbin
 
