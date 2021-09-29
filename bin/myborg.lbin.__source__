@@ -1,7 +1,7 @@
 #!/source/this/sh
 
 # PREFS
-__lbin_bin        () { echo ${MYBORG_LBIN_BIN}  ; }
+__lbin_bin        () { echo ${MYBORG_LBIN}  ; }
 __lbin_prefix     () { echo ${MYBORG_LBIN_PREFIX} ; }
 #__lbin_bin        () { echo ~/.local/bin/LBIN   ; }
 #__lbin_prefix     () { echo lbin                ; }

@@ -17,7 +17,7 @@ export_ () { export $1=$2 ; }
 #-------------------------------------------------------------
     export_ MYBORG_BUILD        ${MYBORG}/.build
     export_ MYBORG_MODS         ${MYBORG_BUILD}/mods
-    export_ MYBORG_LBIN_BIN     ${MYBORG_BUILD}/lbin
+    export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
     export_ MYBORG_LBIN_PREFIX  ${MYBORG}/lbin
 
 # DEFINE EXTERNAL PATHS
