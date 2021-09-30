@@ -22,7 +22,8 @@ rmdir      ${MYBORG_LBIN}
 mkdir -p   ${MYBORG_LBIN}
 
 # This function is used by clients.
-__lbin_default () { cp ../lbin/* ${MYBORG_LBIN} ; }
+#__lbin_default () { cp ../lbin/* ${MYBORG_LBIN} ; }
+__lbin_default () { echo '*** __lbin_default is defunct ***' ; }
 
 
 main () {
@@ -49,6 +50,10 @@ __myborg_borgify () {
 }
 __myborg_activate () {
     for path in $(borg.ls.fullpath ${MYBORG_MODS}); do
+        [ -d ${path}/lbin ] && {
+            echo copying lbin
+            cp ${path}/lbin/* ${MYBORG_LBIN}
+        }
         [ ! -f ${path}/.insitu/activate ] && printf "[skip] \t[${path}]\n"
         [ ! -f ${path}/.insitu/activate ] && continue
         printf "[ ok ] \t[${path}]\n"
