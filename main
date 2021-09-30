@@ -9,7 +9,6 @@ export_ () { export $1=$2 ; }
 # DEFINE PERMANENT INTERNAL PATHS
 #-------------------------------------------------------------
     export_ MYBORG_SBIN     ${MYBORG}/bin
-    export_ MYBORG_SLIB     ${MYBORG}/lib
     export_ MYBORG_MANIFEST ${MYBORG}/MANIFEST
     export_ MYBORG_DOTS     ${MYBORG}/dots
 
