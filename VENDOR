@@ -1,11 +1,6 @@
 #!/bin/sh
-
-clone () {
-    [ -d "$2" ] && return
-    git clone $1 $2
-}
-
-clone https://github.com/bats-core/bats-core.git    ${MYBORG_VENDOR}/bats/bats-core
-clone https://github.com/bats-core/bats-support.git ${MYBORG_VENDOR}/bats/bats-support
-clone https://github.com/bats-core/bats-assert.git  ${MYBORG_VENDOR}/bats//bats-assert
+x () { myborg-clone-to ${MYBORG_VENDOR}/$* ; }
+x bats/bats-core     https://github.com/bats-core/bats-core.git
+x bats/bats-support  https://github.com/bats-core/bats-support.git
+x bats/bats-assert   https://github.com/bats-core/bats-assert.git
 
