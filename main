@@ -37,7 +37,7 @@ export_ () { export $1=$2 ; }
     rm -f      ${MYBORG_LBIN}/*
     rmdir      ${MYBORG_LBIN}
     mkdir -p   ${MYBORG_LBIN}
-    . myborg.lbin.__source__
+    __lbin_default () { cp ../lbin/* ${MYBORG_LBIN} ; }
 
 # BE NICE.
 #-------------------------------------------------------------
