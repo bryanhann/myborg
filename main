@@ -30,44 +30,33 @@ main () {
     echo "++[$MYBORG/main] $*"
     echo installing VENDOR     ; ${MYBORG}/VENDOR
     echo installing MANIFEST   ; ${MYBORG}/MANIFEST
-    echo processing MANIFEST   ; __myborg_activate
-    echo borgifying...         ; __myborg_borgify $1
+    echo processing MANIFEST   ; __myborg_process_mods
+    echo processing BORGIFY    ; __myborg_borgify $1
     echo "++[$MYBORG/main] $*"
 }
 
-__myborg_source () {
-    [ "$1" = "-q" ] || __myborg_note__ sourcing $*
-    [ "$1" = "-q" ] && shift
-    source $*
-}
 __myborg_borgify () {
-    [ ! "$1" == "" ] && {
-        __myborg_source borg:__first__
-        __myborg_source ${MYBORG_DOTS}/dot$1
-        __myborg_source borg:__last__
-        __myborg_source borg:path:clean
-    }
-}
-__myborg_activate () {
-    for path in $(borg.ls.fullpath ${MYBORG_MODS}); do
-        printf "[$path]:"
-        [ -d ${path}/lbin ] && {
-            printf " lbin"
-            cp ${path}/lbin/* ${MYBORG_LBIN}
-        }
-        [ -f ${path}/.insitu/activate ] && {
-            printf " activate"
-
-            > /dev/null   pushd $path/.insitu
-            . ./activate
-            > /dev/null   popd
-        }
-        echo
-    done
+    [ "$1" == "" ] && return
+    __myborg_source () { echo "  sourcing [$*]"; source $*; }
+    __myborg_source borg:__first__
+    __myborg_source ${MYBORG_DOTS}/dot$1
+    __myborg_source borg:__last__
+    __myborg_source borg:path:clean
 }
 
 
-__myborg_note__ () {
-    printf "$1:\t" ; shift ; printf "[$*]" ; echo
+__myborg_process_mod () {
+    path=$1
+    printf "  processing [$(basename $1)]:"
+    [ -d ${1}/lbin ] && printf " lbin"
+    [ -d ${1}/lbin ] && cp ${1}/lbin/* ${MYBORG_LBIN}
+    [ -f ${1}/.insitu/activate ] && printf " activate"
+    [ -f ${1}/.insitu/activate ] && . borg:insitu $1/.insitu . ./activate
+    echo
 }
+__myborg_process_mods () {
+    for path in $(borg.ls.fullpath ${MYBORG_MODS}); do __myborg_process_mod $path ; done
+}
+
+
 main $*
