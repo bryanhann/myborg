@@ -1,0 +1,7 @@
+#!/bin/sh
+dst=$1
+[ -d ${dst} ] && exit 
+shift
+echo
+echo "}}} CLONING FROM [$*]"
+git clone $* ${dst}
