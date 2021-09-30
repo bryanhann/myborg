@@ -1,21 +1,8 @@
 #!/source/this/sh
 
-# PREFS
-__lbin_bin        () { echo ${MYBORG_LBIN}  ; }
-__lbin_prefix     () { echo ${MYBORG_LBIN_PREFIX} ; }
-#__lbin_bin        () { echo ~/.local/bin/LBIN   ; }
-#__lbin_prefix     () { echo lbin                ; }
-
-# PREPARE LBIN
-borg.safe-rmdir     $(__lbin_bin)
-mkdir -p            $(__lbin_bin)
-. borg.path.src.add $(__lbin_bin)
-
-# CLIENT FUNCTIONS
-
 __lbin_add    () {
     borg.assert.insitu || return
-    cp ${1} $(__lbin_bin)
+    cp ${1} ${MYBORG_LBIN}
 }
 
 __lbin_load () {
@@ -29,5 +16,3 @@ __lbin_default () {
     borg.assert.insitu|| return
     __lbin_load $(borg.insitu.path)/lbin
 }
-
-

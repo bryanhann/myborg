@@ -31,8 +31,12 @@ export_ () { export $1=$2 ; }
 # PREPARE ENVIRONMENT
 #-------------------------------------------------------------
     export_ PYTHONPATH      ${MYBORG_SLIB}
-    export_ PATH            ${PATH}:${MYBORG_SBIN}
-    mkdir -p ${MYBORG_BUILD}
+    export_ PATH ${PATH}:${MYBORG_SBIN}
+    export_ PATH ${PATH}:${MYBORG_LBIN}
+    mkdir -p   ${MYBORG_BUILD}
+    rm -f      ${MYBORG_LBIN}/*
+    rmdir      ${MYBORG_LBIN}
+    mkdir -p   ${MYBORG_LBIN}
     . myborg.lbin.__source__
 
 # BE NICE.
