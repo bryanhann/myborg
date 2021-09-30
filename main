@@ -12,7 +12,6 @@ export_ MYBORG_VENDOR       ${MYBORG_BUILD}/vendor
 export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
 export_ MYBORG_OPT          ${HOME}/.local/opt/MYBORG_OPT
 
-export_ PYTHONPATH      ${MYBORG_SLIB}
 export_ PATH ${PATH}:${HOME}/.local/bin
 export_ PATH ${PATH}:${MYBORG_SBIN}
 export_ PATH ${PATH}:${MYBORG_LBIN}
