@@ -28,9 +28,9 @@ __lbin_default () { echo '*** __lbin_default is defunct ***' ; }
 
 main () {
     echo "++[$MYBORG/main] $*"
-    echo processing VENDOR     ; ${MYBORG}/VENDOR
-    echo processing MANIFEST   ; ${MYBORG}/MANIFEST
-    echo activating mods...    ; __myborg_activate
+    echo installing VENDOR     ; ${MYBORG}/VENDOR
+    echo installing MANIFEST   ; ${MYBORG}/MANIFEST
+    echo processing MANIFEST   ; __myborg_activate
     echo borgifying...         ; __myborg_borgify $1
     echo "++[$MYBORG/main] $*"
 }
@@ -50,16 +50,19 @@ __myborg_borgify () {
 }
 __myborg_activate () {
     for path in $(borg.ls.fullpath ${MYBORG_MODS}); do
+        printf "[$path]:"
         [ -d ${path}/lbin ] && {
-            echo copying lbin
+            printf " lbin"
             cp ${path}/lbin/* ${MYBORG_LBIN}
         }
-        [ ! -f ${path}/.insitu/activate ] && printf "[skip] \t[${path}]\n"
-        [ ! -f ${path}/.insitu/activate ] && continue
-        printf "[ ok ] \t[${path}]\n"
-        > /dev/null   pushd $path/.insitu
-        . ./activate
-        > /dev/null   popd
+        [ -f ${path}/.insitu/activate ] && {
+            printf " activate"
+
+            > /dev/null   pushd $path/.insitu
+            . ./activate
+            > /dev/null   popd
+        }
+        echo
     done
 }
 
