@@ -2,44 +2,28 @@
 
 export_ () { export $1=$2 ; }
 
-# DETERMINE MY LOCATION (./install writes this file)
-#-------------------------------------------------------------
-    export_ MYBORG          $(cat ~/.local/var/myborg/current.txt)
+export_ MYBORG          $(cat ~/.local/var/myborg/current.txt)
+export_ MYBORG_SBIN     ${MYBORG}/bin
+export_ MYBORG_MANIFEST ${MYBORG}/MANIFEST
+export_ MYBORG_DOTS     ${MYBORG}/dots
+export_ MYBORG_BUILD        ${MYBORG}/.build
+export_ MYBORG_MODS         ${MYBORG_BUILD}/mods
+export_ MYBORG_VENDOR       ${MYBORG_BUILD}/vendor
+export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
+export_ MYBORG_OPT          ${HOME}/.local/opt/MYBORG_OPT
 
-# DEFINE PERMANENT INTERNAL PATHS
-#-------------------------------------------------------------
-    export_ MYBORG_SBIN     ${MYBORG}/bin
-    export_ MYBORG_MANIFEST ${MYBORG}/MANIFEST
-    export_ MYBORG_DOTS     ${MYBORG}/dots
+export_ PYTHONPATH      ${MYBORG_SLIB}
+export_ PATH ${PATH}:${HOME}/.local/bin
+export_ PATH ${PATH}:${MYBORG_SBIN}
+export_ PATH ${PATH}:${MYBORG_LBIN}
 
-# DEFINE BUILD PATHS
-#-------------------------------------------------------------
-    export_ MYBORG_BUILD        ${MYBORG}/.build
-    export_ MYBORG_MODS         ${MYBORG_BUILD}/mods
-    export_ MYBORG_VENDOR       ${MYBORG_BUILD}/vendor
-    export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
+mkdir -p   ${MYBORG_BUILD}
+rm -f      ${MYBORG_LBIN}/*
+rmdir      ${MYBORG_LBIN}
+mkdir -p   ${MYBORG_LBIN}
 
-# DEFINE EXTERNAL PATHS
-#-------------------------------------------------------------
-
-#    export_ MYBORG_BIN      ${HOME}/.local/var/myborg/mybin
-#    export_ MYBORG_BUILD    ${HOME}/.local/var/myborg/mybin
-    export_ MYBORG_OPT      ${HOME}/.local/opt/MYBORG_OPT
-
-# PREPARE ENVIRONMENT
-#-------------------------------------------------------------
-    export_ PYTHONPATH      ${MYBORG_SLIB}
-    export_ PATH ${PATH}:${MYBORG_SBIN}
-    export_ PATH ${PATH}:${MYBORG_LBIN}
-    mkdir -p   ${MYBORG_BUILD}
-    rm -f      ${MYBORG_LBIN}/*
-    rmdir      ${MYBORG_LBIN}
-    mkdir -p   ${MYBORG_LBIN}
-    __lbin_default () { cp ../lbin/* ${MYBORG_LBIN} ; }
-
-# BE NICE.
-#-------------------------------------------------------------
-    export_ PATH            ${PATH}:${HOME}/.local/bin
+# This function is used by clients.
+__lbin_default () { cp ../lbin/* ${MYBORG_LBIN} ; }
 
 
 main () {
