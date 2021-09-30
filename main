@@ -11,6 +11,7 @@ export_ MYBORG_MODS         ${MYBORG_BUILD}/mods
 export_ MYBORG_VENDOR       ${MYBORG_BUILD}/vendor
 export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
 export_ MYBORG_OPT          ${HOME}/.local/opt/MYBORG_OPT
+export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
 
 export_ PATH ${PATH}:${HOME}/.local/bin
 export_ PATH ${PATH}:${MYBORG_SBIN}
@@ -18,7 +19,7 @@ export_ PATH ${PATH}:${MYBORG_LBIN}
 
 main () {
     echo "++[$MYBORG/main] $*"
-    echo preparing  BUILD      ; __myborg_prep_lbin
+    echo preparing  LBIN       ; myborg_clear_dir ${MYBORG_LBIN}
     echo installing VENDOR     ; ${MYBORG}/VENDOR
     echo installing MANIFEST   ; ${MYBORG}/MANIFEST
     echo processing MANIFEST   ; __myborg_process_mods
@@ -26,34 +27,27 @@ main () {
     echo "++[$MYBORG/main] $*"
 }
 
-__myborg_prep_lbin () {
-    mkdir -p   ${MYBORG_BUILD}
-    rm -f      ${MYBORG_LBIN}/*
-    rmdir      ${MYBORG_LBIN}
-    mkdir -p   ${MYBORG_LBIN}
-}
 
 __myborg_borgify () {
     [ "$1" == "" ] && return
-    __myborg_source () { echo "  sourcing [$*]"; source $*; }
-    __myborg_source borg:__first__
-    __myborg_source ${MYBORG_DOTS}/dot$1
-    __myborg_source borg:__last__
-    __myborg_source borg:path:clean
+    . myborg_source borg:__first__
+    . myborg_source ${MYBORG_DOTS}/dot$1
+    . myborg_source borg:__last__
+    . myborg_source borg:path:clean
 }
 
-
-__myborg_process_mod () {
-    path=$1
-    printf "  processing [$(basename $1)]:"
-    [ -d ${1}/lbin ] && printf " lbin"
-    [ -d ${1}/lbin ] && cp ${1}/lbin/* ${MYBORG_LBIN}
-    [ -f ${1}/.insitu/activate ] && printf " activate"
-    [ -f ${1}/.insitu/activate ] && . borg:insitu $1/.insitu . ./activate
-    echo
-}
 __myborg_process_mods () {
-    for path in $(borg.ls.fullpath ${MYBORG_MODS}); do __myborg_process_mod $path ; done
+    for path in $(borg.ls.fullpath ${MYBORG_MODS})
+        do 
+            printf "  processing [$(basename $path)]:"
+            [ -d ${path}/lbin ] && printf " lbin"
+            [ -d ${path}/lbin ] && mkdir -p ${MYBORG_LBIN}
+            [ -d ${path}/lbin ] && cp ${path}/lbin/* ${MYBORG_LBIN}
+            [ -f ${path}/.insitu/activate ] && printf " activate"
+            [ -f ${path}/.insitu/activate ] && . borg:insitu ${path}/.insitu . ./activate
+            echo
+            #__myborg_process_mod $path
+        done
 }
 
 
