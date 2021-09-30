@@ -19,7 +19,7 @@ export_ PATH ${PATH}:${MYBORG_LBIN}
 
 main () {
     echo "++[$MYBORG/main] $*"
-    echo preparing  LBIN       ; myborg_clear_dir ${MYBORG_LBIN}
+    echo preparing  LBIN       ; . myborg_clear_dir ${MYBORG_LBIN}
     echo installing VENDOR     ; ${MYBORG}/VENDOR
     echo installing MANIFEST   ; ${MYBORG}/MANIFEST
     echo processing MANIFEST   ; __myborg_process_mods
