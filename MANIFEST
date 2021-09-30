@@ -1,16 +1,18 @@
-200.lbin.bch.borgtry        git@github.com:bryanhann/lbin.bch.borgtry
-210.lbin.bch.mnt            git@github.com:bryanhann/lbin.bch.mnt
-230.lbin.bch.ws852          git@github.com:bryanhann/lbin.bch.ws852 -b insitu
-240.lbin.bch.vjot           git@github.com:bryanhann/lbin.bch.vjot
-250.lbin.bch.zjot           git@github.com:bryanhann/lbin.bch.zjot
-260.lbin.bch.ec2            git@github.com:bryanhann/lbin.bch.ec2   -b lbin
-270.lbin.bch.popo           git@github.com:bryanhann/lbin.bch.popo  -b lbin
-280.lbin.bch.poetry         git@github.com:bryanhann/lbin.bch.poetry
-290.lbin.bch.monty          git@github.com:bryanhann/lbin.bch.monty
-800.bchp.history.data       git@github.com:bryanhann/bchp.history.data
-810.bchp.history.control    git@github.com:bryanhann/bchp.history.control
-900.bch.misc                git@github.com:bryanhann/myborg.900.bch-misc
-#320.mydts                   git@github.com:bryanhann/myborg.320.mydts
-#330.mycmd                   git@github.com:bryanhann/myborg.330.mycmd
-#820.popo                    git@github.com:bryanhann/myborg.995.popo
-#100.bchk                    git@github.com:bryanhann/bchk.__base__
+#!/bin/sh
+x () { myborg-clone-to ${MYBORG_MODS}/$* ; }
+x 200.lbin.bch.borgtry        git@github.com:bryanhann/lbin.bch.borgtry
+x 210.lbin.bch.mnt            git@github.com:bryanhann/lbin.bch.mnt
+x 230.lbin.bch.ws852          git@github.com:bryanhann/lbin.bch.ws852 -b insitu
+x 240.lbin.bch.vjot           git@github.com:bryanhann/lbin.bch.vjot
+x 250.lbin.bch.zjot           git@github.com:bryanhann/lbin.bch.zjot
+x 260.lbin.bch.ec2            git@github.com:bryanhann/lbin.bch.ec2   -b lbin
+x 270.lbin.bch.popo           git@github.com:bryanhann/lbin.bch.popo  -b lbin
+x 280.lbin.bch.poetry         git@github.com:bryanhann/lbin.bch.poetry
+x 290.lbin.bch.monty          git@github.com:bryanhann/lbin.bch.monty
+x 800.bchp.history.data       git@github.com:bryanhann/bchp.history.data
+x 810.bchp.history.control    git@github.com:bryanhann/bchp.history.control
+x 900.bch.misc                git@github.com:bryanhann/myborg.900.bch-misc
+#x 320.mydts                   git@github.com:bryanhann/myborg.320.mydts
+#x 330.mycmd                   git@github.com:bryanhann/myborg.330.mycmd
+#x 820.popo                    git@github.com:bryanhann/myborg.995.popo
+#x 100.bchk                    git@github.com:bryanhann/bchk.__base__

@@ -47,7 +47,7 @@ export_ () { export $1=$2 ; }
 main () {
     echo "++[$MYBORG/main] $*"
     echo processing VENDOR     ; ${MYBORG}/VENDOR
-    echo processing index...   ; __myborg.manifest
+    echo processing MANIFEST   ; ${MYBORG}/MANIFEST
     echo activating mods...    ; __myborg_activate
     echo borgifying...         ; __myborg_borgify $1
     echo "++[$MYBORG/main] $*"
