@@ -67,18 +67,17 @@ __myborg_borgify () {
     }
 }
 __myborg_activate () {
-    for name in $(ls ${MYBORG_MODS} | sort); do
-        path=${MYBORG_MODS}/$name
-        [ -f ${path}/.insitu/activate ] || {
-            printf "[skip] \t[$name]\n"
-            continue
-        }
-        printf "[ ok ] \t[$name]\n"
-        > /dev/null 2>/dev/null     pushd $path/.insitu
+    for path in $(borg.ls.fullpath ${MYBORG_MODS}); do
+        [ ! -f ${path}/.insitu/activate ] && printf "[skip] \t[${path}]\n"
+        [ ! -f ${path}/.insitu/activate ] && continue
+        printf "[ ok ] \t[${path}]\n"
+        > /dev/null   pushd $path/.insitu
         . ./activate
-        > /dev/null 2>/dev/null     popd
+        > /dev/null   popd
     done
 }
+
+
 __myborg_note__ () {
     printf "$1:\t" ; shift ; printf "[$*]" ; echo
 }
