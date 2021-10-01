@@ -1,7 +1,9 @@
-#!/bin/sh
-root=$1
-[ "${root}" = "" ] && root=${PWD}
-[ -d ${root} ] || exit
-for name in $(/bin/ls ${root}); do
-    echo ${root}/${name}
+#!/bin/bash
+[   -z "$1" ] && ROOT=$PWD
+[ ! -z "$1" ] && ROOT="$1"
+[ ! -d "${ROOT}" ] && exit 1
+/bin/ls -1 "${ROOT}" | \
+while read LINE; do
+    echo ${ROOT}/${LINE}
 done
+
