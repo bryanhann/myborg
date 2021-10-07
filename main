@@ -20,7 +20,7 @@ export_ PYTHONPATH ${MYBORG_LBIN}
 
 main () {
     echo "++[$MYBORG/main] $*"
-    echo preparing  LBIN       ; . myborg_clear_dir ${MYBORG_LBIN}
+    echo emptying LBIN         ; rm -rf ${MYBORG_LBIN} ; mkdir -p ${MYBORG_LBIN}
     echo installing VENDOR     ; ${MYBORG}/VENDOR
     echo installing MANIFEST   ; ${MYBORG}/MANIFEST
     echo processing MANIFEST   ; __myborg_process_mods
