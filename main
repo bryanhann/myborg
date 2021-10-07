@@ -16,6 +16,7 @@ export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
 export_ PATH ${PATH}:${HOME}/.local/bin
 export_ PATH ${PATH}:${MYBORG_SBIN}
 export_ PATH ${PATH}:${MYBORG_LBIN}
+export_ PYTHONPATH ${MYBORG_LBIN}
 
 main () {
     echo "++[$MYBORG/main] $*"
