@@ -1,7 +1,7 @@
 #!/source/this/sh
+
 export MYBORG=$(cat ~/.local/var/myborg/current.txt)
 source ${MYBORG}/CONSTANTS
-source ${MYBORG}/FUNCTIONS
 
 main () {
     echo "++[$MYBORG/main] $*"
@@ -9,8 +9,14 @@ main () {
     echo installing VENDOR     ; ${MYBORG}/VENDOR
     echo installing MANIFEST   ; ${MYBORG}/MANIFEST
     echo processing MANIFEST   ; . myborg.reload
-    echo processing BORGIFY    ; __myborg_borgify $1
+    [ ! "$1" == "" ] &&  echo processing BORGIFY
+    [ ! "$1" == "" ] && . myborg_source borg:__first__
+    [ ! "$1" == "" ] && . myborg_source ${MYBORG_DOTS}/dot$1
+    [ ! "$1" == "" ] && . myborg_source borg:__last__
+    [ ! "$1" == "" ] && . myborg_source borg:path:clean
     echo "++[$MYBORG/main] $*"
 }
 
 main $*
+
+
