@@ -1,9 +1,9 @@
 #!/source/this/sh
 
 # Assumes MYBORG is set.
+
 export_ () { export $1=$2 ; }
 
-#export_ MYBORG          $(cat ~/.local/var/myborg/current.txt)
 export_ MYBORG_SBIN     ${MYBORG}/bin
 export_ MYBORG_MANIFEST ${MYBORG}/MANIFEST
 export_ MYBORG_DOTS     ${MYBORG}/dots
