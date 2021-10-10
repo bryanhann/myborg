@@ -28,5 +28,4 @@ for dotfile in .bashrc .bash_profile; do
     fix $dotfile
 done
 
-source ${PWD}/main 
-
+echo MYBORG is installed. It will be active with tne next shell.
