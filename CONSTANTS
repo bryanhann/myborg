@@ -1,0 +1,21 @@
+#!/source/this/sh
+
+# Assumes MYBORG is set.
+export_ () { export $1=$2 ; }
+
+#export_ MYBORG          $(cat ~/.local/var/myborg/current.txt)
+export_ MYBORG_SBIN     ${MYBORG}/bin
+export_ MYBORG_MANIFEST ${MYBORG}/MANIFEST
+export_ MYBORG_DOTS     ${MYBORG}/dots
+export_ MYBORG_BUILD        ${MYBORG}/.build
+export_ MYBORG_MODS         ${MYBORG_BUILD}/mods
+export_ MYBORG_VENDOR       ${MYBORG_BUILD}/vendor
+export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
+export_ MYBORG_OPT          ${HOME}/.local/opt/MYBORG_OPT
+export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
+
+export_ PATH ${PATH}:${HOME}/.local/bin
+export_ PATH ${PATH}:${MYBORG_SBIN}
+export_ PATH ${PATH}:${MYBORG_LBIN}
+export_ PYTHONPATH ${MYBORG_LBIN}
+

@@ -1,0 +1,22 @@
+#!/source/this/sh
+__myborg_borgify () {
+    [ "$1" == "" ] && return
+    . myborg_source borg:__first__
+    . myborg_source ${MYBORG_DOTS}/dot$1
+    . myborg_source borg:__last__
+    . myborg_source borg:path:clean
+}
+
+__myborg_process_mods () {
+    for path in $(borg.ls.fullpath ${MYBORG_MODS})
+        do 
+            printf "  processing [$(basename $path)]:"
+            [ -d ${path}/lbin ] && printf " lbin"
+            [ -d ${path}/lbin ] && cp -r ${path}/lbin/[a-z]* ${MYBORG_LBIN}
+            [ -f ${path}/.insitu/activate ] && printf " activate"
+            [ -f ${path}/.insitu/activate ] && . borg:insitu ${path}/.insitu . ./activate
+            echo
+            #__myborg_process_mod $path
+        done
+}
+

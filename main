@@ -1,22 +1,7 @@
 #!/source/this/sh
-
-export_ () { export $1=$2 ; }
-
-export_ MYBORG          $(cat ~/.local/var/myborg/current.txt)
-export_ MYBORG_SBIN     ${MYBORG}/bin
-export_ MYBORG_MANIFEST ${MYBORG}/MANIFEST
-export_ MYBORG_DOTS     ${MYBORG}/dots
-export_ MYBORG_BUILD        ${MYBORG}/.build
-export_ MYBORG_MODS         ${MYBORG_BUILD}/mods
-export_ MYBORG_VENDOR       ${MYBORG_BUILD}/vendor
-export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
-export_ MYBORG_OPT          ${HOME}/.local/opt/MYBORG_OPT
-export_ MYBORG_LBIN         ${MYBORG_BUILD}/lbin
-
-export_ PATH ${PATH}:${HOME}/.local/bin
-export_ PATH ${PATH}:${MYBORG_SBIN}
-export_ PATH ${PATH}:${MYBORG_LBIN}
-export_ PYTHONPATH ${MYBORG_LBIN}
+export MYBORG=$(cat ~/.local/var/myborg/current.txt)
+source ${MYBORG}/CONSTANTS
+source ${MYBORG}/FUNCTIONS
 
 main () {
     echo "++[$MYBORG/main] $*"
@@ -27,28 +12,5 @@ main () {
     echo processing BORGIFY    ; __myborg_borgify $1
     echo "++[$MYBORG/main] $*"
 }
-
-
-__myborg_borgify () {
-    [ "$1" == "" ] && return
-    . myborg_source borg:__first__
-    . myborg_source ${MYBORG_DOTS}/dot$1
-    . myborg_source borg:__last__
-    . myborg_source borg:path:clean
-}
-
-__myborg_process_mods () {
-    for path in $(borg.ls.fullpath ${MYBORG_MODS})
-        do 
-            printf "  processing [$(basename $path)]:"
-            [ -d ${path}/lbin ] && printf " lbin"
-            [ -d ${path}/lbin ] && cp -r ${path}/lbin/[a-z]* ${MYBORG_LBIN}
-            [ -f ${path}/.insitu/activate ] && printf " activate"
-            [ -f ${path}/.insitu/activate ] && . borg:insitu ${path}/.insitu . ./activate
-            echo
-            #__myborg_process_mod $path
-        done
-}
-
 
 main $*
