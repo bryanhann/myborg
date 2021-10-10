@@ -1,5 +1,7 @@
 #!/bin/sh
 x () { myborg-clone-to ${MYBORG_MODS}/$* ; }
+x 150.lbin.bch.misc           git@github.com:bryanhann/lbin.bch.misc
+x 160.lbin.bch.poet           git@github.com:bryanhann/lbin.bch.poet
 x 200.lbin.bch.borgtry        git@github.com:bryanhann/lbin.bch.borgtry
 x 210.lbin.bch.mnt            git@github.com:bryanhann/lbin.bch.mnt
 x 230.lbin.bch.ws852          git@github.com:bryanhann/lbin.bch.ws852 -b insitu
