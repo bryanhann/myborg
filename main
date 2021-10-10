@@ -8,7 +8,7 @@ main () {
     echo emptying LBIN         ; rm -rf ${MYBORG_LBIN} ; mkdir -p ${MYBORG_LBIN}
     echo installing VENDOR     ; ${MYBORG}/VENDOR
     echo installing MANIFEST   ; ${MYBORG}/MANIFEST
-    echo processing MANIFEST   ; __myborg_process_mods
+    echo processing MANIFEST   ; . myborg.reload
     echo processing BORGIFY    ; __myborg_borgify $1
     echo "++[$MYBORG/main] $*"
 }
