@@ -42,7 +42,6 @@ __myborg_process_mods () {
         do 
             printf "  processing [$(basename $path)]:"
             [ -d ${path}/lbin ] && printf " lbin"
-            [ -d ${path}/lbin ] && mkdir -p ${MYBORG_LBIN}
             [ -d ${path}/lbin ] && cp -r ${path}/lbin/[a-z]* ${MYBORG_LBIN}
             [ -f ${path}/.insitu/activate ] && printf " activate"
             [ -f ${path}/.insitu/activate ] && . borg:insitu ${path}/.insitu . ./activate
