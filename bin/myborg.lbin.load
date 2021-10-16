@@ -2,7 +2,7 @@
 echo loading LBIN from MODS ...
 
 main () {
-    for name in $(/bin/ls -1 ${MYBORG_MODS}); do
+    for name in $(/bin/ls -1 ${MYBORG_MODS} | grep "^[0-9]"); do
         path=${MYBORG_MODS}/${name}
         lbin=${path}/lbin
         [ -d ${lbin} ] || continue

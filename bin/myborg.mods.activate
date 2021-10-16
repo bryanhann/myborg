@@ -1,11 +1,10 @@
 #!/bin/bash
 echo activating MODS ...
-
-main () {
-    for path in $(borg.ls.fullpath ${MYBORG_MODS})
-        do 
-            [ -f ${path}/.insitu/activate ] && echo "  activating [$(basename ${path})]"
-            [ -f ${path}/.insitu/activate ] && . borg:insitu ${path}/.insitu . ./activate
-        done
-}
-main
+for name in $(ls -1 ${MYBORG_MODS} | grep "^[0-9]"); do
+    path="${MYBORG_MODS}/$name/.insitu"
+    [  -f ${path}/activate ] || continue
+    echo "  activating [${name}]"
+    > /dev/null pushd ${path}
+    . ./activate
+    > /dev/null popd
+done
