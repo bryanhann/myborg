@@ -1,0 +1,9 @@
+#!/source/this/sh
+[ ! "$1" = "" ] && {
+    echo processing BORGIFY
+    . myborg_source borg:__first__
+    . myborg_source ${MYBORG_DOTS}/dot$1
+    . myborg_source borg:__last__
+    .  myborg_source borg:path:clean
+}
+

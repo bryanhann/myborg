@@ -1,22 +1,12 @@
 #!/source/this/sh
-
 export MYBORG=$(cat ~/.local/var/myborg/current.txt)
 source ${MYBORG}/CONSTANTS
-
-main () {
-    echo "++[$MYBORG/main] $*"
-    echo emptying LBIN         ; rm -rf ${MYBORG_LBIN} ; mkdir -p ${MYBORG_LBIN}
-    echo installing VENDOR     ; ${MYBORG}/VENDOR
-    echo installing MANIFEST   ; ${MYBORG}/MANIFEST
-    echo processing MANIFEST   ; . myborg.reload
-    [ ! "$1" == "" ] &&  echo processing BORGIFY
-    [ ! "$1" == "" ] && . myborg_source borg:__first__
-    [ ! "$1" == "" ] && . myborg_source ${MYBORG_DOTS}/dot$1
-    [ ! "$1" == "" ] && . myborg_source borg:__last__
-    [ ! "$1" == "" ] && . myborg_source borg:path:clean
-    echo "++[$MYBORG/main] $*"
-}
-
-main $*
-
-
+echo "++[$MYBORG/main] $*"
+${MYBORG}/VENDOR
+${MYBORG}/MANIFEST
+myborg.lbin.empty
+myborg.lbin.load
+. myborg.mods.activate
+myborg.lbin.clean
+. myborg.borgify $*
+echo "++[$MYBORG/main] $*"

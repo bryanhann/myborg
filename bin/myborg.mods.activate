@@ -1,0 +1,11 @@
+#!/bin/bash
+echo activating MODS ...
+
+main () {
+    for path in $(borg.ls.fullpath ${MYBORG_MODS})
+        do 
+            [ -f ${path}/.insitu/activate ] && echo "  activating [$(basename ${path})]"
+            [ -f ${path}/.insitu/activate ] && . borg:insitu ${path}/.insitu . ./activate
+        done
+}
+main

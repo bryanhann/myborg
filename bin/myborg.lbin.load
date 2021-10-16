@@ -1,0 +1,15 @@
+#!/bin/bash
+echo loading LBIN from MODS ...
+
+main () {
+    for name in $(/bin/ls -1 ${MYBORG_MODS}); do
+        path=${MYBORG_MODS}/${name}
+        lbin=${path}/lbin
+        [ -d ${lbin} ] || continue
+        echo  "  loading from [$name]"
+        cp -r ${lbin}/[a-z]* ${MYBORG_LBIN}
+    done
+}
+
+main
+myborg.lbin.clean
