@@ -2,6 +2,7 @@
 echo cloning to MODS ...
 x () { myborg-clone-to ${MYBORG_MODS}/$* ; }
 x 100.lbin.pylib.bch.iter     git@github.com:bryanhann/lbin.pylib.bch.itertools
+x 140.lbin.bch.here           git@github.com:bryanhann/lbin.bch.here
 x 150.lbin.bch.misc           git@github.com:bryanhann/lbin.bch.misc
 x 160.lbin.bch.poet           git@github.com:bryanhann/lbin.bch.poet
 x 200.lbin.bch.borgtry        git@github.com:bryanhann/lbin.bch.borgtry
