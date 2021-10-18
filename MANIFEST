@@ -1,6 +1,7 @@
 #!/bin/sh
 echo cloning to MODS ...
 x () { myborg-clone-to ${MYBORG_MODS}/$* ; }
+x 010.lbin.pylib.bch.__bch__  git@github.com:bryanhann/lbin.pylib.bch.__bch__
 x 100.lbin.pylib.bch.iter     git@github.com:bryanhann/lbin.pylib.bch.itertools
 x 140.lbin.bch.here           git@github.com:bryanhann/lbin.bch.here
 x 150.lbin.bch.misc           git@github.com:bryanhann/lbin.bch.misc
@@ -19,6 +20,7 @@ x 300.lbin.bch.plate          git@github.com:bryanhann/lbin.bch.plate
 x 800.bchp.history.data       git@github.com:bryanhann/bchp.history.data
 x 810.bchp.history.control    git@github.com:bryanhann/bchp.history.control
 x 900.bch.misc                git@github.com:bryanhann/myborg.900.bch-misc
+x 999.test.fred                git@github.com:bryanhann/test.fred
 #x 320.mydts                   git@github.com:bryanhann/myborg.320.mydts
 #x 330.mycmd                   git@github.com:bryanhann/myborg.330.mycmd
 #x 820.popo                    git@github.com:bryanhann/myborg.995.popo
