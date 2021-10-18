@@ -3,6 +3,7 @@
 .mods
 .borg
 .lbin
+*.pyc
 __pycache__
 hide
 junk.*
