@@ -1,0 +1,31 @@
+#!/bin/sh
+
+#
+# Given executable files::
+#    LBIN/foo
+#    LBIN/foo.d/foo.bar
+#
+# The following pairs are equivalent:
+#         foo bar [args] ==    LBIN/foo.d/foo.bar [args]
+#       . foo bar [args]  == . LBIN/foo.d/foo.bar [args]
+#
+# This is implemented by LBIN/foo being an executable
+# file consisting of the single line
+#       . lbin.handle foo $0 $*
+#
+# The purpose is to keep LBIN less cluttered and to 
+# introduce a uniform interface.
+#
+
+__handle () {
+    local NAME=$1 ; shift
+    [ $(basename $1) = $NAME ] && DOT= || DOT=.
+    shift
+    local DIR=${MYBORG_LBIN}/${NAME}.d
+    local  PRE=${MYBORG_LBIN}/${NAME}.d/${NAME}
+    [ -f $PRE.$1 ] && { ${DOT} ${PRE}.${*} ; return $? ; }
+    printf "The [${NAME}] command suite.\n\nCOMMANDS:\n"
+    for ii in $(ls ${DIR}); do printf "\t$ii\n" ; done
+}
+
+__handle $*

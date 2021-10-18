@@ -1,0 +1,3 @@
+for path in $(find ${MYBORG_LBIN} | grep "lbin.info"); do
+    echo $path
+done
