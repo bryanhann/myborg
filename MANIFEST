@@ -16,6 +16,7 @@ v bats/bats-assert   https://github.com/bats-core/bats-assert.git
 x 100.lbin.pylib.bch.iter     ${BCH}/lbin.pylib.bch.itertools
 x 140.lbin.bch.here           ${BCH}/lbin.bch.here
 x 150.lbin.bch.misc           ${BCH}/lbin.bch.misc
+x 151.lbin.bch.hansel         ${BCH}/lbin.bch.hansel
 x 160.lbin.bch.poet           ${BCH}/lbin.bch.poet
 x 200.lbin.bch.borgtry        ${BCH}/lbin.bch.borgtry
 x 210.lbin.bch.mnt            ${BCH}/lbin.bch.mnt
