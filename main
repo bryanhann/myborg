@@ -1,9 +1,22 @@
 #!/source/this/sh
 export MYBORG=$(cat ~/.local/var/myborg/current.txt)
 source ${MYBORG}/CONSTANTS
+
 echo "++[$MYBORG/main] $*"
+
+# Leave [bch.hansel] breadcrumbs to follow.
+# This currently depends on the current locations
+# in CONSTANTS. (XXX)
+
+mkdir -p $MYBORG_BUILD
+mkdir -p $MYBORG_MODS
+touch $MYBORG_BUILD/.bch
+touch $MYBORG_MODS/.bch
+
 ${MYBORG}/MANIFEST
+
 myborg.lbin.load
 . myborg:mods:activate
 . myborg:borgify $*
+
 echo "++[$MYBORG/main] $*"
