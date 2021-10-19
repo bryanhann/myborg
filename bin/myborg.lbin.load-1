@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cp ${MYBORG}/LBIN/* ${MYBORG_LBIN}

@@ -2,11 +2,8 @@
 export MYBORG=$(cat ~/.local/var/myborg/current.txt)
 source ${MYBORG}/CONSTANTS
 echo "++[$MYBORG/main] $*"
-${MYBORG}/VENDOR
 ${MYBORG}/MANIFEST
-myborg.lbin.empty
 myborg.lbin.load
 . myborg.mods.activate
-myborg.lbin.clean
 . myborg.borgify $*
 echo "++[$MYBORG/main] $*"

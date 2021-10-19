@@ -1,7 +1,0 @@
-#!/bin/sh
-echo cloning to VENDOR ...
-x () { myborg-clone-to ${MYBORG_VENDOR}/$* ; }
-x bats/bats-core     https://github.com/bats-core/bats-core.git
-x bats/bats-support  https://github.com/bats-core/bats-support.git
-x bats/bats-assert   https://github.com/bats-core/bats-assert.git
-

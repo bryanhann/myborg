@@ -1,27 +1,34 @@
 #!/bin/sh
-echo cloning to MODS ...
-x () { myborg-clone-to ${MYBORG_MODS}/$* ; }
-x 010.lbin.pylib.bch.__bch__  git@github.com:bryanhann/lbin.pylib.bch.__bch__
-x 100.lbin.pylib.bch.iter     git@github.com:bryanhann/lbin.pylib.bch.itertools
-x 140.lbin.bch.here           git@github.com:bryanhann/lbin.bch.here
-x 150.lbin.bch.misc           git@github.com:bryanhann/lbin.bch.misc
-x 160.lbin.bch.poet           git@github.com:bryanhann/lbin.bch.poet
-x 200.lbin.bch.borgtry        git@github.com:bryanhann/lbin.bch.borgtry
-x 210.lbin.bch.mnt            git@github.com:bryanhann/lbin.bch.mnt
-x 220.lbin.bch.zot            git@github.com:bryanhann/lbin.bch.zot
-x 230.lbin.bch.ws852          git@github.com:bryanhann/lbin.bch.ws852 -b insitu
-x 240.lbin.bch.vjot           git@github.com:bryanhann/lbin.bch.vjot
-x 250.lbin.bch.zjot           git@github.com:bryanhann/lbin.bch.zjot
-x 260.lbin.bch.ec2            git@github.com:bryanhann/lbin.bch.ec2   -b lbin
-x 270.lbin.bch.popo           git@github.com:bryanhann/lbin.bch.popo  -b lbin
-x 280.lbin.bch.poetry         git@github.com:bryanhann/lbin.bch.poetry
-x 290.lbin.bch.monty          git@github.com:bryanhann/lbin.bch.monty
-x 300.lbin.bch.plate          git@github.com:bryanhann/lbin.bch.plate
-x 800.bchp.history.data       git@github.com:bryanhann/bchp.history.data
-x 810.bchp.history.control    git@github.com:bryanhann/bchp.history.control
-x 900.bch.misc                git@github.com:bryanhann/myborg.900.bch-misc
-x 999.test.fred                git@github.com:bryanhann/test.fred
-#x 320.mydts                   git@github.com:bryanhann/myborg.320.mydts
-#x 330.mycmd                   git@github.com:bryanhann/myborg.330.mycmd
-#x 820.popo                    git@github.com:bryanhann/myborg.995.popo
-#x 100.bchk                    git@github.com:bryanhann/bchk.__base__
+cloneto () { [ -d $1 ]||{ D=$1;shift;mkdir -p $(dirname $D);git clone $* ${D}; echo; }; }
+v () { cloneto ${MYBORG_VENDOR}/$* ; }
+x () { cloneto ${MYBORG_MODS}/$* ; }
+
+BCH=git@github.com:bryanhann
+
+#echo cloning to VENDOR ...
+
+v bats/bats-core     https://github.com/bats-core/bats-core.git
+v bats/bats-support  https://github.com/bats-core/bats-support.git
+v bats/bats-assert   https://github.com/bats-core/bats-assert.git
+
+#echo cloning to MODS ...
+
+x 100.lbin.pylib.bch.iter     ${BCH}/lbin.pylib.bch.itertools
+x 140.lbin.bch.here           ${BCH}/lbin.bch.here
+x 150.lbin.bch.misc           ${BCH}/lbin.bch.misc
+x 160.lbin.bch.poet           ${BCH}/lbin.bch.poet
+x 200.lbin.bch.borgtry        ${BCH}/lbin.bch.borgtry
+x 210.lbin.bch.mnt            ${BCH}/lbin.bch.mnt
+x 220.lbin.bch.zot            ${BCH}/lbin.bch.zot
+x 230.lbin.bch.ws852          ${BCH}/lbin.bch.ws852 -b insitu
+x 240.lbin.bch.vjot           ${BCH}/lbin.bch.vjot
+x 250.lbin.bch.zjot           ${BCH}/lbin.bch.zjot
+x 260.lbin.bch.ec2            ${BCH}/lbin.bch.ec2   -b lbin
+x 270.lbin.bch.popo           ${BCH}/lbin.bch.popo  -b lbin
+x 280.lbin.bch.poetry         ${BCH}/lbin.bch.poetry
+x 290.lbin.bch.monty          ${BCH}/lbin.bch.monty
+x 300.lbin.bch.plate          ${BCH}/lbin.bch.plate
+x 800.bchp.history.data       ${BCH}/bchp.history.data
+x 810.bchp.history.control    ${BCH}/bchp.history.control
+x 900.bch.misc                ${BCH}/myborg.900.bch-misc
+x 999.test.fred               ${BCH}/test.fred
