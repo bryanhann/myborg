@@ -8,7 +8,8 @@ def copyall( srcd ):
     for src in srcd.glob('*'):
         dst=dstd/src.name
         if src.is_file():
-            shutil.copyfile(src,dst)
+            # avoid shutil.copyfile because we need permissions preserved.
+            shutil.copy(src,dst)
         if src.is_dir():
             shutil.copytree(src,dst)
 
