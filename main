@@ -4,6 +4,6 @@ source ${MYBORG}/CONSTANTS
 echo "++[$MYBORG/main] $*"
 ${MYBORG}/MANIFEST
 myborg.lbin.load
-. myborg.mods.activate
-. myborg.borgify $*
+. myborg:mods:activate
+. myborg:borgify $*
 echo "++[$MYBORG/main] $*"
