@@ -1,0 +1,6 @@
+#!/source/this/sh
+red     () { printf "$(tput bold)$(tput setaf 15)$(tput setab 1)$1$(tput sgr0)" ; }
+green   () { printf "$(tput bold)$(tput setaf 15)$(tput setab 2)$1$(tput sgr0)" ; }
+yellow  () { printf "$(tput bold)$(tput setaf 15)$(tput setab 3)$1$(tput sgr0)" ; }
+blue    () { printf "$(tput bold)$(tput setaf 15)$(tput setab 4)$1$(tput sgr0)" ; }
+ok      () { printf "$(tput bold)$(tput setaf 2)$(tput setab 15)$1$(tput sgr0)" ; }
