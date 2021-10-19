@@ -1,8 +1,0 @@
-#!/bin/sh
-dst=$1
-[ -d ${dst} ] && exit 
-mkdir -p $(dirname $dst)
-shift
-echo
-echo "}}} CLONING FROM [$*]"
-git clone $* ${dst}
