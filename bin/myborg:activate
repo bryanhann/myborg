@@ -1,6 +1,12 @@
-for name in $(/bin/ls ${MYBORG_MODS}); do
+#!/source/this/sh
+name=
+for name in $(/bin/ls ${MYBORG_MODS} 2>/dev/null); do
     [ -f ${MYBORG_MODS}/${name}/.insitu/activate ] || continue
     >/dev/null pushd ${MYBORG_MODS}/${name}/.insitu
     . ./activate
     >/dev/null popd
 done
+
+[ "$name" = "" ] && {
+    echo '[myborg:activate] No mods found. Try ". myborg.load"'
+}

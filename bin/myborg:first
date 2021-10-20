@@ -1,0 +1,2 @@
+#!/source/this/sh
+exit () { echo try \'builtin exit\' ; }

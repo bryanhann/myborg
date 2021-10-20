@@ -1,10 +1,13 @@
 #!/bin/bash
 
 main () {
+    $MYBORG/MANIFEST
     empty
     load1
     load2
     load3
+    myborg.clean
+    . myborg:activate
 }
 
 load1 () {

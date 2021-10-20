@@ -1,17 +1,20 @@
 #!/source/this/sh
 export MYBORG=$(cat ~/.local/var/myborg/current.txt)
-. $MYBORG/CONSTANTS
-[ "$MYPID" == "" ] && export MYPID=$$
-[ $MYPID = $$ ] && . myborg:install
-[ $MYPID = $$ ] || . myborg:activate
-export PATH=$(myborg.path clean)
+export PATH=${PATH}:${MYBORG}/bin
 
-[ "$MYPID" = "$$" ] && {
-    exit () { echo try \'builtin exit\' ; }
- }||{
-    true;
- }
+[ "$MYPID" = "" ] && export MYPID=$$
+
+. myborg:constants
+. myborg:activate
+
+[ "$MYPID" = $$ ] && . myborg:first
+[ "$MYPID" = $$ ] || . myborg:second
 
 . ${MYBORG_DOTS}/dot$1
+
 echo ENTER LEVEL $(( ${SHLVL} - 1 ))
 trap "echo ENTER LEVEL $(( ${SHLVL} - 2 ))" 0
+
+export_ PATH    $(myborg.path clean)
+alias myborg="pushd ${MYBORG}"
+
