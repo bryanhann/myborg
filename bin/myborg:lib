@@ -1,0 +1,14 @@
+#!/bin/bash
+myborg:ls         () { for name in $(/bin/ls $*); do echo $1/$name; done ; }
+myborg:pushd      () { > /dev/null pushd $1 ; }
+myborg:popd       () { > /dev/null popd  ; }
+myborg:within     () { 2>/dev/null myborg:pushd $1 && { shift; $*; myborg:popd; } }
+myborg:target     () { echo $1/.insitu/activate;  }
+myborg:activate   () { myborg:within ${1}/.insitu . ./activate ; }
+
+myborg:activate_mod () {
+    [ -f $(myborg:target $1) ] && {
+       echo "  activating [$(basename $1)]"
+       myborg:activate $1
+    }
+}

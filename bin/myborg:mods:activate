@@ -1,10 +1,9 @@
 #!/bin/bash
+
+source myborg:lib
 echo activating MODS ...
-for name in $(ls -1 ${MYBORG_MODS} | grep "^[0-9]"); do
-    path="${MYBORG_MODS}/$name/.insitu"
-    [  -f ${path}/activate ] || continue
-    echo "  activating [${name}]"
-    > /dev/null pushd ${path}
-    . ./activate
-    > /dev/null popd
+
+for mod in $(myborg:ls ${MYBORG_MODS} ); do
+    myborg:activate_mod $mod 
 done
+
