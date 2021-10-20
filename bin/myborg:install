@@ -1,0 +1,7 @@
+#!/source/this/sh
+
+. ${MYBORG}/CONSTANTS
+${MYBORG}/MANIFEST
+myborg.lbin.load
+myborg.lbin.clean
+. myborg:activate

@@ -22,13 +22,13 @@ load3 () {
         path=${MYBORG_MODS}/${name}
         lbin=${path}/lbin
         [ -d ${lbin} ] || continue
-        echo  "  loading from [$name]"
+#        echo  "  loading from [$name]"
         cp -r ${lbin}/[a-z]* ${MYBORG_LBIN}
     done
 }
 
 empty() {
-    echo emptying LBIN ...
+#    echo emptying LBIN ...
     rm -rf ${MYBORG_LBIN}
     mkdir -p ${MYBORG_LBIN}
 }

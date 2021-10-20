@@ -1,22 +1,17 @@
 #!/source/this/sh
 export MYBORG=$(cat ~/.local/var/myborg/current.txt)
-echo "++[$MYBORG/main] $*"
-
-. ${MYBORG}/CONSTANTS
-
-mkdir -p $MYBORG_BUILD
-mkdir -p $MYBORG_MODS
-touch $MYBORG_BUILD/.bch
-touch $MYBORG_MODS/.bch
-
-${MYBORG}/MANIFEST
-
-. myborg:lib
-myborg.lbin.load
-myborg.lbin.clean
-__myborg_mods_activate
-__myborg_borgify $*
+. $MYBORG/CONSTANTS
+[ "$MYPID" == "" ] && export MYPID=$$
+[ $MYPID = $$ ] && . myborg:install
+[ $MYPID = $$ ] || . myborg:activate
 export PATH=$(myborg.path clean)
 
+[ "$MYPID" = "$$" ] && {
+    exit () { echo try \'builtin exit\' ; }
+ }||{
+    true;
+ }
 
-echo "++[$MYBORG/main] $*"
+. ${MYBORG_DOTS}/dot$1
+echo ENTER LEVEL $(( ${SHLVL} - 1 ))
+trap "echo ENTER LEVEL $(( ${SHLVL} - 2 ))" 0

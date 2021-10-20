@@ -1,0 +1,8 @@
+#!/bin/bash
+#This shebang is for synax only. Do not make executable!
+__last__ () {
+    echo ENTER LEVEL $(( ${SHLVL} - 1 ))
+    trap "echo ENTER LEVEL $(( ${SHLVL} - 2 ))" 0
+}
+
+__last__ $*

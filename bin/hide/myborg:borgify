@@ -1,11 +1,9 @@
-#!/source/this/sh
-_source () { echo "  sourcing [$*]"; . $*; }
-main () {
+__borgify__ () {
     [ "$1" = "" ] && return
-    echo processing BORGIFY
-    _source borg:__first__
-    _source ${MYBORG_DOTS}/dot$1
-    _source borg:__last__
-    _source borg:path:clean
+    echo processing BORGIFY ...
+    exit () { echo try \'builtin exit\' ; }
+    . ${MYBORG_DOTS}/dot$1
+    echo ENTER LEVEL $(( ${SHLVL} - 1 ))
+    trap "echo ENTER LEVEL $(( ${SHLVL} - 2 ))" 0
 }
-main $*
+#!/path/to/sh

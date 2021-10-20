@@ -19,12 +19,12 @@ def recurse(path):
         yield from recurse(child)
 
 def remove(path):
-    print('  removing:', path)
+#    print('  removing:', path)
     if path.is_dir(): shutil.rmtree(path)
     if path.is_file(): os.remove(path)
 
 def main():
-    print('cleaning LBIN ...')
+#    print('cleaning LBIN ...')
     BAD=BAD_BLOCK.split()
     for path in recurse(LBIN):
         if path.name in BAD:
