@@ -1,4 +1,0 @@
-echo emptying LBIN ...
-rm -rf ${MYBORG_LBIN}
-mkdir -p ${MYBORG_LBIN}
-#!/bin/sh

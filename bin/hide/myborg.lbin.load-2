@@ -1,0 +1,6 @@
+#!/bin/bash
+load2 () {
+    for path in $(find ${MYBORG_MODS} | grep ".bch.lbin/install.py"); do
+        python3 $path
+    done
+}

@@ -1,7 +1,36 @@
 #!/bin/bash
 
-myborg.lbin.empty
-myborg.lbin.load-1
-myborg.lbin.load-2
-myborg.lbin.load-3
-myborg.lbin.clean
+main () {
+    empty
+    load1
+    load2
+    load3
+}
+
+load1 () {
+    cp ${MYBORG}/LBIN/* ${MYBORG_LBIN}
+}
+
+load2 () {
+    for path in $(find ${MYBORG_MODS} | grep ".bch.lbin/install.py"); do
+        python3 $path
+    done
+}
+
+load3 () {
+    for name in $(/bin/ls -1 ${MYBORG_MODS} | grep "^[0-9]"); do
+        path=${MYBORG_MODS}/${name}
+        lbin=${path}/lbin
+        [ -d ${lbin} ] || continue
+        echo  "  loading from [$name]"
+        cp -r ${lbin}/[a-z]* ${MYBORG_LBIN}
+    done
+}
+
+empty() {
+    echo emptying LBIN ...
+    rm -rf ${MYBORG_LBIN}
+    mkdir -p ${MYBORG_LBIN}
+}
+
+main

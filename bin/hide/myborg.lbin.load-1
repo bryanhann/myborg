@@ -1,0 +1,6 @@
+#!/bin/bash
+
+load1 () {
+    cp ${MYBORG}/LBIN/* ${MYBORG_LBIN}
+}
+load1

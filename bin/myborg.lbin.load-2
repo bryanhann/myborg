@@ -1,5 +1,0 @@
-#!/bin/bash
-
-for path in $(find ${MYBORG_MODS} | grep ".bch.lbin/install.py"); do
-    python3 $path
-done

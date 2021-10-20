@@ -1,0 +1,6 @@
+myborg_path_clean () {
+    NEWPATH=$(borg.path clean)
+    [ ! -z "$NEWPATH" ] && export PATH=${NEWPATH}
+}
+
+myborg_path_clean

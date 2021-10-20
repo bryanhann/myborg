@@ -12,3 +12,23 @@ myborg:activate_mod () {
        myborg:activate $1
     }
 }
+__myborg_mods_activate () {
+    echo activating MODS ...
+    for mod in $(myborg:ls ${MYBORG_MODS} ); do
+        myborg:activate_mod $mod 
+    done
+}
+
+__myborg_borgify () {
+    _source () { echo "  sourcing [$*]"; . $*; }
+    [ "$1" = "" ] && return
+    echo processing BORGIFY
+    _source borg:__first__
+    _source ${MYBORG_DOTS}/dot$1
+    _source borg:__last__
+}
+
+__myborg_path_clean () { 
+    export PATH=$(myborg.path clean); 
+}
+

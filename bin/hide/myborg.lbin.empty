@@ -1,0 +1,7 @@
+__myborg_lbin_empty () {
+    echo emptying LBIN ...
+    rm -rf ${MYBORG_LBIN}
+    mkdir -p ${MYBORG_LBIN}
+}
+
+__myborg_lbin_empty

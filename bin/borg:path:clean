@@ -1,2 +1,0 @@
-NEWPATH=$(borg.path clean)
-[ ! -z "$NEWPATH" ] && export PATH=${NEWPATH}

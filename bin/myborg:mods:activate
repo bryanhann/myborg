@@ -1,9 +1,0 @@
-#!/bin/bash
-
-source myborg:lib
-echo activating MODS ...
-
-for mod in $(myborg:ls ${MYBORG_MODS} ); do
-    myborg:activate_mod $mod 
-done
-
