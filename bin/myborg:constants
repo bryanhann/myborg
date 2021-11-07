@@ -14,3 +14,6 @@ export_ PATH            ${PATH}:${MYBORG_LBIN}
 export_ PYTHONPATH
 export_ PYTHONPATH      ${PYTHONPATH}:${MYBORG}/lib/python
 export_ PYTHONPATH      ${PYTHONPATH}:${MYBORG_LBIN}/lib/python
+. .myborg.path.append X${HOME}/.local/bin
+. .myborg.path.append X${MYBORG_SBIN}
+. .myborg.path.append X${MYBORG_LBIN}

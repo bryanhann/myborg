@@ -1,6 +1,5 @@
 #!/source/this/sh
-export_ () { export $1=$2; }
-export_ MYBORG          $(cat ~/.local/var/myborg/current.txt)
+export_ () { export $1=$2 ; }
 export_ MYBORG_SBIN     ${MYBORG}/bin
 export_ MYBORG_MANIFEST ${MYBORG}/MANIFEST
 export_ MYBORG_DOTS     ${MYBORG}/dots
@@ -9,18 +8,12 @@ export_ MYBORG_MODS     ${MYBORG}/.build/mods
 export_ MYBORG_VENDOR   ${MYBORG}/.build/vendor
 export_ MYBORG_LBIN     ${MYBORG}/.build/lbin
 export_ MYBORG_OPT      ${HOME}/.local/opt/MYBORG_OPT
-myborg_path_append () { . ${MYBORG_SBIN}/.myborg.path.append $1; }
+#export_ PATH            ${PATH}:${HOME}/.local/bin
+#export_ PATH            ${PATH}:${MYBORG_SBIN}
+#export_ PATH            ${PATH}:${MYBORG_LBIN}
 export_ PYTHONPATH
 export_ PYTHONPATH      ${PYTHONPATH}:${MYBORG}/lib/python
 export_ PYTHONPATH      ${PYTHONPATH}:${MYBORG_LBIN}/lib/python
-myborg_path_append ${HOME}/.local/bin
-myborg_path_append ${MYBORG_SBIN}
-myborg_path_append ${MYBORG_LBIN}
-
-
-. .myborg.activate.mods
-. .myborg._mypid
-. .myborg._dots
-. .myborg._last
-. .myborg.path.clean
-
+. .myborg.path.append ${HOME}/.local/bin
+. .myborg.path.append ${MYBORG_SBIN}
+. .myborg.path.append ${MYBORG_LBIN}

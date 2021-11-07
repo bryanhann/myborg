@@ -1,0 +1,2 @@
+export PATH=$(myborg.path clean)
+

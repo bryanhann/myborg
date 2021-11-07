@@ -1,0 +1,18 @@
+#!
+
+
+__first () {
+    echo "[$MYBORG]: rewriting exit()"
+    exit () { echo try \'builtin exit\' ; }
+}
+
+__next () {
+    true
+}
+
+[ "$MYPID" = "" ] && export MYPID=$$
+[ "$MYPID" = $$ ] && __first
+[ "$MYPID" = $$ ] || __next
+
+
+#!/source/this/sh

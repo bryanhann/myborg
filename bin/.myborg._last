@@ -1,0 +1,3 @@
+#!
+echo ENTER LEVEL $(( ${SHLVL} - 1 ))
+trap "echo ENTER LEVEL $(( ${SHLVL} - 2 ))" 0
